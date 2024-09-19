@@ -1,12 +1,12 @@
 ## hw/urls.py
-##description: URL patterns for the hw app - write header comments for ass.
+## description: URL patterns for the hw app
 
-from django.urls import path ##library of urls for url functions 
-from django.conf import settings ##config package that lets file know abt project level settings 
+from django.urls import path
+from django.conf import settings
 from . import views
 
-##list element 
+# all of the URLs that are part of this app
 urlpatterns = [
-    path(r'',views.home,name="home"),
+    path('', views.home, name="home"),
+    
 ]
-

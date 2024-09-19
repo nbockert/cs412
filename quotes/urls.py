@@ -8,5 +8,6 @@ from . import views
 ##list element 
 urlpatterns = [
     path(r'',views.home,name="home"),
-]
+    path('show_all/',views.show,name='show'),
+] 
 

@@ -2,7 +2,7 @@
 URL configuration for cs412 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -17,15 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from django.conf import settings 
+from django.conf import settings
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('hw/',include("hw.urls")),
-# ] + static(settings.STATIC_URL,
-#            document_root=settings.STATIC_ROOT) #+ operator is concatonator 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('quotes/',include('quotes.urls')),
-]+ static(settings.STATIC_URL,         
-          document_root=settings.STATIC_ROOT) #+ operator is concatonator 
+    path("admin/", admin.site.urls),
+    path("", include("quotes.urls")),
+    path("quotes/", include("quotes.urls")), ## we create the URL hw/, 
+                                     ## and associate it with URLs in another file
+] + static(settings.STATIC_URL,
+           document_root=settings.STATIC_ROOT)

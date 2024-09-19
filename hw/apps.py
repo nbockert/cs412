@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class HwConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'hw'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "hw"
