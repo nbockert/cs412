@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'styles.css'%}">
+    </head>
+    <body>
+        <nav>
+            <div class="navbar">
+            <ul>
+                <!-- <li><a href="/quotes">Home</a></li>
+                <li><a href="/quotes/about">About</a></li> -->
+                <li><a href="{%url 'home'%}">Home</a></li>
+                <li><a href="{%url 'show'%}">Show All</a></li>
+                <li><a href="{%url 'about'%}">About</a></li>
+            </ul>
+        </div>
+        </nav>
+        {% block content %}
+
+        {% endblock %}
+
+    </body>
+</html>
