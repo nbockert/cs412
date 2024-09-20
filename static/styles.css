@@ -1,4 +1,72 @@
 body{
-    background-color: aliceblue;
-    
+    background-color: #c9ecf7;
+    color: #164863;
+    font-family:'Courier New', Courier, monospace;
+}
+.navbar {
+    background-color: #164863;
+    overflow: hidden;
+    color:aliceblue
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul li {
+    float: right;
+}
+
+.navbar ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+.navbar ul li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: auto;
+}
+
+.showall {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    gap: 10px; /* Optional: Adds space between images */
+}
+
+.showall img {
+    width: 150px; /* Adjust the size of the images */
+    height: auto; /* Keeps the image aspect ratio */
+}
+
+
+
+
+/* a{
+    color: #164863;
+    font-size: 20px;
+} */
+h1{
+    font-size: 40px;
+    text-align: center;
+    color: #164863;
+
+}
+
+p{
+    font-size: 30px;
+    text-align: center;
 }
