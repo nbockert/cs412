@@ -48,7 +48,7 @@ img {
 }
 
 .showall img {
-    width: 150px; /* Adjust the size of the images */
+    width: 400px; /* Adjust the size of the images */
     height: auto; /* Keeps the image aspect ratio */
 }
 

@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotes and Images</title>
-</head>
-<body>
+<!-- quotes/templates/quotes/show_all.html -->
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+{% load static %}
     <h1>Show All</h1>
     <!-- Loop for Quotes -->
+    <div class="showall">
+        {% for image in images %}
+            <img src="{{image}}">
+        {% endfor %}
+    </div>
     <ul>
         {% for quote in quotes %}
-            <li>{{quote}}</li>
+            <li>"{{quote}}"</li>
         {% endfor %}
     </ul>
 
     <!-- Loop for Images -->
-    <div>
-        {% for image in images %}
-            <img src="{{image}}" alt="Image" style="width:200px;">
-        {% endfor %}
-    </div>
+{% endblock %}
 
-</body>
-</html>

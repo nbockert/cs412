@@ -1,12 +1,12 @@
-<html>
-    <head>
-        <title>Quotes Page</title>
-    </head>
-    <body>
+<!-- quotes/templates/quotes/quote.html -->
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+{% load static %}
         <h1>Quotes</h1>
-        <a href="{% url 'show' %}">View All Quotes and Images</a>
         <hr>
-        <img src ={{image}} alt="celeb image">
+        <div class="image_container">
+                <img src ={{image}} alt="celeb image">
+        </div>
         <p>"{{quote1}}"</p>
-    </body>
-</html>
+{% endblock %}

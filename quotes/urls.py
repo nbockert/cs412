@@ -9,5 +9,6 @@ from . import views
 urlpatterns = [
     path(r'',views.home,name="home"),
     path('show_all/',views.show,name='show'),
+    path(r"about",views.about,name="about"),
 ] 
 

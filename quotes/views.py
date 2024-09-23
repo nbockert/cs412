@@ -63,4 +63,23 @@ def show(request):
     #render response to this address with that template with this context data
     return render(request,template_name,context)
 
+def about(request):
+    template_name = 'quotes/about.html'
+    quotes = [
+        "Sometimes I push the door close button on people running towards the elevator. I just need my own elevator sometimes. My sanctuary.",
+        "I hate when I'm on a flight and I wake up with a water bottle next to me like oh great now I gotta be responsible for this water bottle",
+        "I don't use blue. I don't like it. It bugs me out. I hate it."
+    ]
+    images = [
+        "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/xMGWSdT0mcqzentuImFmVhkEgAQ.jpg",
+        "https://s.yimg.com/ny/api/res/1.2/jYffK35gecwjTj0zgc8yBg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyNDI7aD04Njg-/https://media.zenfs.com/en/aol_nbc_universal_184/766e34df9b259529c19b645d5103504c",
+        "https://media.gq-magazine.co.uk/photos/5d139cd69fa6013256838bd2/16:9/w_2240,c_limit/kanye-west-01-gq-1june18_getty_b.jpg",
+    ]
+    context = {
+        "quotes": quotes, 
+        "images": images, 
+    }
+    #render response to this address with that template with this context data
+    return render(request,template_name,context)
+
 
