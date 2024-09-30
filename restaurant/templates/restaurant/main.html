@@ -1,0 +1,19 @@
+<!--restaurant/templates/main.html
+basic information about the restaurant.-->
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+        <h1>Nora's Cafe</h1>
+        <br><br>
+        <img id="outside" src="/static/Norascafe.png">
+        <h3>123 Your Mom's House, Brookline, MA</h3>
+        <ul>
+            <li class="hours">Monday: 8am-2am</li>
+            <li class="hours">Tuesday: 8am-2am</li>
+            <li class="hours">Wednesday: 8am-2am</li>
+            <li class="hours">Thursday: 8am-2am</li>
+            <li class="hours">Friday: 5am-2am</li>
+            <li class="hours">Saturday: 9am-2am</li>
+            <li class="hours">Sunday: Closed</li>
+        </ul>
+{% endblock %}

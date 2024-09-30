@@ -1,0 +1,23 @@
+<!-- formdata/templates/formdata/base.html -->
+{% load static %}
+<html>
+    <head>
+        <title>Hello, world!</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="{%url 'show_form'%}"><b>Show Form</b></a></li>
+            </ul>
+        </nav>
+        
+    {% block content %}
+    <!--fill in this section with specific page detail-->
+
+    {% endblock %}
+    
+    <!-- <hr>
+    The current time is {{current_time}}. -->
+    </body>
+</html>

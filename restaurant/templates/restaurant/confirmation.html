@@ -1,0 +1,16 @@
+<!--restaurant/templates/confirmation.html
+process the submission of an order-->
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+    <div>
+        <h1>Confirmation</h1>
+        <p class="userdata">Name: {{name}}</p>
+        <p class="userdata">Phone: {{phone}}</p>
+        <p class="userdata">Email: {{email}}</p>
+        <p class="orders">Order:<br>{{menu|safe}}</p>
+        <p>Special Instructions: {{special}}</p>
+        <p>Total: {{price}}</p>
+        <p>Ready Time: {{ready_time}}</p> 
+    </div>
+{% endblock %}

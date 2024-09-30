@@ -1,0 +1,26 @@
+<!--restaurant/templates/restaurant/order.html
+Form to order food-->
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+<div>
+    <form action="{%url 'submit'%}" method="POST">
+        {%csrf_token%}
+        Name: <input type="text" name="name"><br>
+        Phone: <input type="text" name="phone"><br>
+        Email: <input type="text" name="email"><br>
+        <label>
+            <input type="checkbox" name="menu" value="{{daily_special}}">
+            {{daily_special.item}} - ${{ daily_special.price }}
+        </label><br>
+        {% for item in menu_items %}
+        <label>
+          <input type="checkbox" name="menu" value="{{ item }}">
+          {{ item.item }} - ${{ item.price }}
+        </label><br>
+      {% endfor %}
+          Special Instructions: <input type="text" name="special"><br>
+        <input type="submit" value="Place Order">
+    </form>
+</div>
+{% endblock %}
