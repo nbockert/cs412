@@ -2,9 +2,10 @@
 #
 # mini_fb/models.py
 # Define the data objects for our application
-#
+# nbockert@bu.edu
+#stores the data for the app
 from django.db import models
-class Profile(models.Model):
+class Profiles(models.Model):
     '''Encapsulate the idea of an Article by some author.'''
     # data attributes of a Profile:
     first = models.TextField(blank=False)
@@ -16,4 +17,4 @@ class Profile(models.Model):
     
     def __str__(self):
         '''Return a string representation of this Article object.'''
-        return f'{self.title} by {self.author}'
+        return f'{self.first} {self.last} profile'
