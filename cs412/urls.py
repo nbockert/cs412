@@ -25,8 +25,10 @@ urlpatterns = [
     # path("quotes/", include("quotes.urls")), ## we create the URL hw/, 
     # path("", include("formdata.urls")),
     # path("formdata/", include("formdata.urls")),
-    path("", include("restaurant.urls")),
+    # path("", include("restaurant.urls")),
     # path("restaurant/", include("restaurant.urls")),
+    # path('blog/', include('blog.urls')),
+    path('mini_fb/', include('mini_fb.urls')),
                             
 ] + static(settings.STATIC_URL,
            document_root=settings.STATIC_ROOT)
