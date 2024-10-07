@@ -1,0 +1,37 @@
+
+<!-- templates/show_all.html 
+ nbockert@bu.edu
+ Shows all the profiles as a table -->
+ {% extends 'mini_fb/base.html' %}
+
+ {% block content %}
+ <h1>Showing all Profiles</h1>
+ <!-- scriptlet code to display the value of the variable `articles` 
+ {{ articles }}
+ -->
+<!-- {{profiles}} -->
+ <div>
+     <div>
+         <table border="1">
+             <thead>
+                 <tr>
+                     <th>Name</th>
+                     <th>City</th>
+                     <th>Email</th>
+                     <th>Profile Image</th>
+                 </tr>
+             </thead>
+             <tbody>
+                {% for p in profiles %}
+                 <tr>
+                     <td>{{p.first}} {{p.last}}</td>
+                     <td>{{p.city}}</td>
+                     <td>{{p.email}}</td>
+                     <td><img src={{p.profile_img_url}}></td>
+                 </tr>
+                 {% endfor %}
+             </tbody>
+         </table>
+     </div>
+ <div>
+ {% endblock %}

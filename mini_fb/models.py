@@ -1,3 +1,5 @@
+
+# Create your models here.
 ## Create a Model 
 #
 # mini_fb/models.py
@@ -13,7 +15,6 @@ class Profiles(models.Model):
     city = models.TextField(blank=False)
     email = models.TextField(blank=False)
     profile_img_url = models.TextField(blank=False)
-    published = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         '''Return a string representation of this Article object.'''

@@ -1,27 +1,26 @@
 <!-- mini_fb/templates/mini_fb/base.html
  nbockert@bu.edu
  base.html provides a directory for templates-->
-{% load static %}
-<html>
-    <head>
-        <title>Hello, world!</title>
-        <link rel="stylesheet" href="{% static 'styles.css' %}">
-    </head>
-    <body>
-        <nav>
-            <div class="navbar">
-            <ul>
-                <!-- <li><a href="{%url 'main'%}"><b>Home Page</b></a></li>
-                <li><a href="{%url 'order'%}"><b>Order</b></a></li> -->
+ {% load static %}
+ <html>
+     <head>
+         <title>Hello, world!</title>
+         <link rel="stylesheet" href="{% static 'styles.css' %}">
+     </head>
+     <body>
+         <nav>
+             <div class="navbar">
+             <ul>
 
-            </ul>
-        </div>
-        </nav>
-        
-    {% block content %}
-    <!--fill in this section with specific page detail-->
-
-    {% endblock %}
-
-    </body>
-</html>
+ 
+             </ul>
+         </div>
+         </nav>
+         
+     {% block content %}
+     <!--fill in this section with specific page detail-->
+ 
+     {% endblock %}
+ 
+     </body>
+ </html>
