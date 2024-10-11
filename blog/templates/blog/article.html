@@ -1,0 +1,39 @@
+## Revise Template: show blog using a loop:
+## File: blog/templates/blog/show_all.html
+<!-- templates/show_all.html -->
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Article</h1>
+<!-- scriptlet code to display the value of the variable `articles` 
+{{ articles }}
+-->
+<main class="grid-container">
+    <article class="featured">
+        <div>
+            <h2><a href="{%url 'article' a.pk%}"></a>{{article.title}}</h2>
+            <h3>by {{article.author}} at {{article.published}}</h3>
+            <p>
+            {{article.text}}
+            </p>
+            <h4><a href="{% url 'create_comment' article.pk%}"</h4>
+        </div>
+    </article>
+    <div>
+        {% if article.get_comments%}
+            <h2>Comments</h2>
+            {% for c in article.get_comments%}
+            <div>
+                <strong>by {{c.author}} at {{c.published}}</strong>
+                <p>
+                    {{c.text}}
+                </p>
+            </div>
+            {%endfor%}
+        {% else %}
+        <h2>No Comments</h2>
+        {%endif%}
+    </div>
+</main>
+
+{% endblock %}

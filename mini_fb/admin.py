@@ -6,5 +6,6 @@
 from django.contrib import admin
 # Register your models here.
 from .models import *
-from .models import Profiles
+from .models import Profiles,Profile
 admin.site.register(Profiles)
+admin.site.register(Profile)

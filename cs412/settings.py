@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "quotes", ## new app!!!
-    # "formdata",
-    # "restaurant",
+    "quotes", ## new app!!!
+    "formdata",
+    "restaurant",
     # "blog",
     "mini_fb"
 ]

@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+    <head>
+        <title>Hello, world!</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <nav>
+            <div class="navbar">
+                <ul>
+                    <li><a href="{%url 'show_all' profiles.pk%}"></a></ul>
+                    <li><a href="{%url 'random'%}"></a></ul>
+                </ul>
+        </div>
+        </nav>
+        
+    {% block content %}
+    <!--fill in this section with specific page detail-->
+
+    {% endblock %}
