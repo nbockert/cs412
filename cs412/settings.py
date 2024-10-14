@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "formdata",
     "restaurant",
     # "blog",
-    "mini_fbs",
+    "mini_fb",
     "django_rename_app",
 ]
 

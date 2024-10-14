@@ -29,7 +29,8 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('timestamp', models.DateTimeField(auto_now=True)),
                 ('message', models.TextField()),
-                ('profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mini_fbs.profile')),
+                ('profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mini_fb.profile')),
+                
             ],
         ),
     ]

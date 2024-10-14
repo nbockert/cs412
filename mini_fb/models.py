@@ -1,7 +1,5 @@
 
 # Create your models here.
-
-# Create your models here.
 ## Create a Model 
 #
 # mini_fb/models.py
@@ -25,7 +23,7 @@ class Profile(models.Model):
         City: {self.city}
         Email: {self.email}
         Picture Url: {self.profile_img_url}"""
-    def get_status(self):
+    def get_status_messages(self):
         '''Return all status messages for this profile, ordered by timestamp descending.'''
         # return self.status_msg.all().order_by('-timestamp')
         status = StatusMessage.objects.filter(profile=self)

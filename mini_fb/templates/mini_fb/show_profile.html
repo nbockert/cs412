@@ -2,9 +2,10 @@
 <!-- templates/show_profile.html 
  nbockert@bu.edu
  Shows all the profiles as a table -->
- {% extends 'mini_fbs/base.html' %}
+ {% extends 'mini_fb/base.html' %}
 
  {% block content %}
+ <main class="grid_container">
  <profile>
     <h1>{{profile.first}} {{profile.last}}</h1>
     <img id="profile_img" src="{{profile.profile_img_url}}">
@@ -21,5 +22,20 @@
         </div>
     </div>
 </profile>
+<div class="status">
+    {% if profile.get_status_messages %}
+        <h2>Status Messages</h2>
+        <!-- call the get_comments method on the article object -->
+        <!-- {{article.get_comments}} -->
+        {% for p in profile.get_status_messages %}
+        <div>
+            <strong>{{p}}</strong>
+        </div>
+        {% endfor %}
+    {% else %}
+        <h2>No Comments</h2>
+    {% endif %}
+</div>
+</main>
 
  {% endblock %}

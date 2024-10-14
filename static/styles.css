@@ -112,3 +112,15 @@ table{
     height: auto;
     margin-right: 8px;  /* Space between the icon and the text */
 }
+.status{
+    text-align: center;
+
+}
+.status div {
+    width: 80%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
