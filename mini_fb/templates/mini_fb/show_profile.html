@@ -7,6 +7,7 @@
  {% block content %}
  <main class="grid_container">
  <profile>
+
     <h1>{{profile.first}} {{profile.last}}</h1>
     <img id="profile_img" src="{{profile.profile_img_url}}">
     <div class="profile-container">
@@ -23,10 +24,9 @@
     </div>
 </profile>
 <div class="status">
+    <p>Status Messages</p>
+    <a href="{% url 'create_status' profile.pk%}" id="statuscreate">Create Status</a>
     {% if profile.get_status_messages %}
-        <p>Status Messages</p>
-        <!-- call the get_comments method on the article object -->
-        <!-- {{article.get_comments}} -->
         {% for p in profile.get_status_messages %}
         <div>
             <strong><p>{{p.profile}}:</p></strong>

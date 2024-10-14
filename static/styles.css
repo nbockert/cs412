@@ -139,3 +139,6 @@ table{
 #status_title{
     text-align: center;
 }
+#statuscreate{
+    display: inline-flex;
+}
