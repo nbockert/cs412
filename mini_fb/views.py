@@ -7,8 +7,9 @@ from django.urls import reverse
 #nbockert@bu.edu
 #defines the views for the application 
 # from .models import Profiles, Profile
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import *
+from .forms import *
 from typing import Any
 # from django.urls import reverse
 
@@ -23,6 +24,36 @@ class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'mini_fb/show_profile.html'
     context_object_name = 'profile'
-   
+
+class CreateProfileView(CreateView):
+    '''Create a subclass of CreateView to handle profile creation.'''
+    model = Profile
+    form_class = CreateProfileForm
+    template_name = 'mini_fb/create_profile_form.html'
+
+class CreateStatusMessageView(CreateView):
+    '''Create a subclass of CreateView to handle profile creation.'''
+    model = StatusMessage
+    form_class = CreateStatusMessageForm
+    template_name = 'mini_fb/create_status_form.html'
+    
+    def get_context_data(self, **kwargs):
+        '''Adds the profile object to the context data.'''
+        context = super().get_context_data(**kwargs)
+        profile = Profile.objects.get(pk=self.kwargs['pk'])
+        context['profile'] = profile
+        return context
+
+    def form_valid(self, form):
+        '''Map status message to correct profile'''
+        profile = Profile.objects.get(pk=self.kwargs['pk'])
+        form.instance.profile = profile
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        '''Redirect to the profile page after successfully posting a status message.'''
+        return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
+
+
 
 

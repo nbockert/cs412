@@ -18,11 +18,7 @@ class Profile(models.Model):
     profile_img_url = models.URLField(blank=True)
     def __str__(self):
         '''Return the string representation of this profile'''
-        return f"""
-        Name:{self.first} {self.last}
-        City: {self.city}
-        Email: {self.email}
-        Picture Url: {self.profile_img_url}"""
+        return f'{self.first} {self.last}'
     def get_status_messages(self):
         '''Return all status messages for this profile, ordered by timestamp descending.'''
         # return self.status_msg.all().order_by('-timestamp')
@@ -31,13 +27,15 @@ class Profile(models.Model):
     def get_absolute_url(self):
         '''Return the URL to access a particular profile instance.'''
         return reverse('show_profile', kwargs={'pk': self.pk})
+   
     
     
 class StatusMessage(models.Model):
+    '''Data attributes of status messages'''
     profile = models.ForeignKey("Profile", on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
     message = models.TextField()
     def __str__(self):
-        return f"{self.profile.first} {self.profile.last}: {self.message[:30]} - {self.timestamp}"
+        return f"{self.message}"
 
 

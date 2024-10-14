@@ -117,10 +117,22 @@ table{
 
 }
 .status div {
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
     width: 80%;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#createprofile{
+    margin-left: 326px;
+    margin-right: auto;
+    /* text-align: center; */
+}
+#time{
+    text-align: left;
 }
