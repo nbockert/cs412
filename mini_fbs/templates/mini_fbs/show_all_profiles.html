@@ -1,0 +1,35 @@
+
+<!-- templates/show_all_profiles.html 
+ nbockert@bu.edu
+ Shows all the profiles as a table *** The issue is you need to think of this as a one to many-->
+ {% extends 'mini_fbs/base.html' %}
+
+ {% block content %}
+ <h1>Showing all Profiles</h1>
+
+ <main>
+     <div>
+         <table border="1">
+             <thead>
+                 <tr>
+                     <th>Name</th>
+                     <th>City</th>
+                     <th>Email</th>
+                     <th>Profile Image</th>
+                 </tr>
+             </thead>
+             <tbody>
+                {% for p in profiles %}
+                 <tr>
+                    <td><a href="{% url 'show_profile' p.pk %}">{{p.first}} {{p.last}}</a></td>
+                     <td>{{p.city}}</td>
+                     <td>{{p.email}}</td>
+                     <td><a href="{% url 'show_profile' p.pk %}"><img src={{p.profile_img_url}}></a></td>
+                 </tr>
+                 {% endfor %}
+             </tbody>
+         </table>
+     </div>
+    </main>
+
+ {% endblock %}

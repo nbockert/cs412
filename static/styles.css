@@ -86,3 +86,29 @@ table{
     text-align: center;
 
 }
+.profile-container {
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
+}
+
+
+.profile-info {
+    display: flex;
+    flex-direction: column; /* Stack the icons vertically */
+    align-items: center; /* Align icons and text to the left */
+    justify-content: center;
+    text-align: left;        /* Ensure the text is aligned to the left */
+}
+
+.icon-text {
+    display: inline-flex;
+    align-items: center;  /* Align icon and text vertically */
+    margin-bottom: 10px;  /* Space between city and email */
+}
+
+.icon {
+    width: 30px;   /* Adjust the icon size */
+    height: auto;
+    margin-right: 8px;  /* Space between the icon and the text */
+}

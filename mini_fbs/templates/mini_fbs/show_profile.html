@@ -1,0 +1,25 @@
+
+<!-- templates/show_profile.html 
+ nbockert@bu.edu
+ Shows all the profiles as a table -->
+ {% extends 'mini_fbs/base.html' %}
+
+ {% block content %}
+ <profile>
+    <h1>{{profile.first}} {{profile.last}}</h1>
+    <img id="profile_img" src="{{profile.profile_img_url}}">
+    <div class="profile-container">
+        <div class="profile-info">
+            <span class="icon-text">
+                <img src="/static/home-icon.png" alt="icon" class="icon">
+                <h2>{{ profile.city }}</h2>
+            </span>
+            <span class="icon-text">
+                <img src="/static/email-icon.png" alt="icon" class="icon">
+                <h2><a id="email" href="mailto:{{ profile.email }}" rel="nofollow">{{ profile.email }}</a></h2>
+            </span>
+        </div>
+    </div>
+</profile>
+
+ {% endblock %}

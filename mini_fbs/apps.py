@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MiniFbConfig(AppConfig):
+class MiniFbsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'mini_fb'
+    name = 'mini_fbs'

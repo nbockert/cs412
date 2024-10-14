@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "formdata",
     "restaurant",
     # "blog",
-    "mini_fb"
+    "mini_fbs",
+    "django_rename_app",
 ]
 
 MIDDLEWARE = [
