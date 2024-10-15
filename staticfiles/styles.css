@@ -1,0 +1,144 @@
+body{
+    background-color: #c9ecf7;
+    color: #164863;
+    font-family:'Courier New', Courier, monospace;
+}
+.navbar {
+    background-color: #164863;
+    overflow: hidden;
+    color:aliceblue
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul li {
+    float: right;
+}
+
+.navbar ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+.navbar ul li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: auto;
+}
+
+.showall {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    gap: 10px; /* Optional: Adds space between images */
+}
+
+.showall img {
+    width: 400px; /* Adjust the size of the images */
+    height: auto; /* Keeps the image aspect ratio */
+}
+
+
+
+
+/* a{
+    color: #164863;
+    font-size: 20px;
+} */
+h1{
+    font-size: 40px;
+    text-align: center;
+    color: #164863;
+
+}
+
+p{
+    font-size: 30px;
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+.hours{
+    text-align: center;
+}
+
+table{
+    /* color: aliceblue;
+    background: #164863; */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+.profile-container {
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
+}
+
+
+.profile-info {
+    display: flex;
+    flex-direction: column; /* Stack the icons vertically */
+    align-items: center; /* Align icons and text to the left */
+    justify-content: center;
+    text-align: left;        /* Ensure the text is aligned to the left */
+}
+
+.icon-text {
+    display: inline-flex;
+    align-items: center;  /* Align icon and text vertically */
+    margin-bottom: 10px;  /* Space between city and email */
+}
+
+.icon {
+    width: 30px;   /* Adjust the icon size */
+    height: auto;
+    margin-right: 8px;  /* Space between the icon and the text */
+}
+.status{
+    text-align: center;
+
+}
+.status div {
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
+    width: 80%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#createprofile{
+    margin-left: 326px;
+    margin-right: auto;
+    /* text-align: center; */
+}
+#time{
+    text-align: left;
+}
+#status_title{
+    text-align: center;
+}
+#statuscreate{
+    display: inline-flex;
+}
