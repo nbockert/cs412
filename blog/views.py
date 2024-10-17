@@ -40,6 +40,7 @@ class CreateCommentView(CreateView):
     '''
     form_class = CreateCommentForm
     template_name = "blog/create_comment_form.html"
+
     def get_context_data(self,**kwargs:Any):
         context = super().get_context_data(**kwargs)
         article = Article.objects.get(pk=self.kwargs['pk'])
@@ -64,3 +65,11 @@ class CreateCommentView(CreateView):
         #delegate work to superclass version of this method
         return super().form_valid(form)
 
+class CreateArticleView(CreateView):
+    '''A class to create a new Article Instance'''
+    form=CreateArticleForm
+    template_name='blog/create_article_form.html'
+    def form_valid(self,form):
+        '''This method is called as part of the form processing.'''
+        print(f'CreateArticleView.form_valid():form.cleaned_data={form.cleaned_data}')
+        return super().form_valid(form)

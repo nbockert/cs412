@@ -31,8 +31,13 @@
         <div>
             <strong><p>{{p.profile}}:</p></strong>
             <p>{{p.message}}</p>
-            <br>
+            {% if p.get_images %}
+                {% for img in p.get_images%}
+                    <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
+                {% endfor %}
+            {%endif%}
             <small id="time">{{p.timestamp}}</small>
+
         </div>
         {% endfor %}
     {% else %}

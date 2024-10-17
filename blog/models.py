@@ -4,6 +4,7 @@
 # Define the data objects for our application
 #
 from django.db import models
+from django.urls import reverse
 class Article(models.Model):
     '''Encapsulate the idea of an Article by some author.'''
     # data attributes of a Article:
@@ -11,6 +12,7 @@ class Article(models.Model):
     author = models.TextField(blank=False)
     text = models.TextField(blank=False)
     published = models.DateTimeField(auto_now=True)
+    image_file = models.ImageField(blank=True)
     
     def __str__(self):
         '''Return a string representation of this Article object.'''
@@ -21,6 +23,11 @@ class Article(models.Model):
         #use the ORM to retrieve Comments for which the FK is this article
         comments = Comment.objects.filter(article=self) #match this up with foreign key 
         return comments
+    def get_absolute_url(self):
+        '''Return URL that will display instance of this object'''
+        #self.pk is primary key to this article instance 
+        return reverse('article',kwargs={'pk':self.pk})
+        
 class Comment(models.Model):
     '''Encapsulate the idea of a comment on an article'''
     #model the 1 to many relationship with Article (foreign key)

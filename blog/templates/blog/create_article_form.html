@@ -1,0 +1,20 @@
+<!--blog/templates/blog/create_article_form.html-->
+{%extends 'blog/base.html'%}
+{% block content %}
+<h2>Create a New Article</h2>
+<form method="POST" enctype="multipart/form-data">
+    {%crsf_token%}
+    <!-- {{form}} -->
+    <table>
+        {{form.as_table}}
+        <tr>
+            <td></td>
+            <td><input type="submit" name="submit" value="Create Article"></td>
+            <!--how you get rid of reverse match error-->
+            <form action="{%url 'show_all'%}" >
+                <input type="submit" name="submit" value="Cancel">
+            </form>
+        </tr>
+    </table>
+</form>
+{% endblock%}

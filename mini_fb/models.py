@@ -16,6 +16,7 @@ class Profile(models.Model):
     city = models.TextField(blank=False)
     email = models.TextField(blank=False)
     profile_img_url = models.URLField(blank=True)
+    # image_file = models.ImageField(blank=True)
     def __str__(self):
         '''Return the string representation of this profile'''
         return f'{self.first} {self.last}'
@@ -37,5 +38,17 @@ class StatusMessage(models.Model):
     message = models.TextField()
     def __str__(self):
         return f"{self.message}"
+    def get_images(self):
+        image_file = Image.objects.filter(statusmessage=self)
+        return image_file
+
+class Image(models.Model):
+    image_file = models.ImageField(blank=True)
+    statusmessage = models.ForeignKey("StatusMessage", on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return f"{self.timestamp}"
+
+
 
 

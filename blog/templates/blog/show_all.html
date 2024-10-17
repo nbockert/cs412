@@ -5,10 +5,11 @@
 
 {% block content %}
 <h1>Showing all Articles</h1>
-
+<article>
 <div>
     {% for a in articles %}
     <div>
+        <img src="{{a.image_file.url}}">
         <h2>{{a.title}}</h2>
         <h3>by {{a.author}} at {{a.published}}</h3>
         <p>
@@ -16,5 +17,7 @@
         </p>
     </div>
     {% endfor %}
+    {if a.get_image}
 <div>
+</article>
     {% endblock %}
