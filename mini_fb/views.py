@@ -7,7 +7,7 @@ from django.urls import reverse
 #nbockert@bu.edu
 #defines the views for the application 
 # from .models import Profiles, Profile
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView,UpdateView
 from .models import *
 from .forms import *
 from typing import Any
@@ -62,6 +62,11 @@ class CreateStatusMessageView(CreateView):
         '''Redirect to the profile page after successfully posting a status message.'''
         return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
 
-
-
+class UpdateProfileView(UpdateView):
+    model=Profile
+    form_class = UpdateProfileForm
+    template_name = 'mini_fb/update_profile_form.html'
+    def get_success_url(self):
+        '''Redirect to the profile page after successfully updating profile.'''
+        return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
 

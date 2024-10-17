@@ -117,7 +117,7 @@ table{
 
 }
 .status div {
-    display: flex;
+    display: block;
     align-items: center; /* Align items (image and info) vertically */
     justify-content: center; /* Center the whole container on the page */
     width: 80%;
@@ -140,5 +140,7 @@ table{
     text-align: center;
 }
 #statuscreate{
-    display: inline-flex;
+    display: block;
+    font-size: 25px;
+    text-align: center;
 }
