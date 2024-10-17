@@ -46,8 +46,9 @@ class Image(models.Model):
     image_file = models.ImageField(blank=True)
     statusmessage = models.ForeignKey("StatusMessage", on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=True)
+    print(statusmessage)
     def __str__(self):
-        return f"{self.timestamp}"
+        return f"{self.image_file}"
 
 
 

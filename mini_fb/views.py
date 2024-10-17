@@ -48,6 +48,14 @@ class CreateStatusMessageView(CreateView):
         '''Map status message to correct profile'''
         profile = Profile.objects.get(pk=self.kwargs['pk'])
         form.instance.profile = profile
+        # save the status message to database
+        sm = form.save()
+        # read the file from the form:
+        files = self.request.FILES.getlist('files')
+        for f in files:
+            image = Image(image_file=f,statusmessage=sm)
+            image.save()
+
         return super().form_valid(form)
 
     def get_success_url(self):

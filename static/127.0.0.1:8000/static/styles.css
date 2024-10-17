@@ -117,7 +117,7 @@ table{
 
 }
 .status div {
-    display: b;
+    display: block;
     align-items: center; /* Align items (image and info) vertically */
     justify-content: center; /* Center the whole container on the page */
     width: 80%;
