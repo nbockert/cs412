@@ -24,3 +24,9 @@ class UpdateProfileForm(forms.ModelForm):
             '''Associate this HTML form with the Profile data model'''
             model = Profile
             fields = ['city','email','profile_img_url'] # can't change your name
+class UpdateStatusForm(forms.ModelForm):
+        '''A form to update a status'''
+        class Meta:
+            '''Associate this HTML form with the Profile data model'''
+            model = StatusMessage
+            fields = ['message'] # can't change your name
