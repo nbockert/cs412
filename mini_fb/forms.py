@@ -29,4 +29,4 @@ class UpdateStatusForm(forms.ModelForm):
         class Meta:
             '''Associate this HTML form with the Profile data model'''
             model = StatusMessage
-            fields = ['message'] # can't change your name
+            fields = ['message'] 

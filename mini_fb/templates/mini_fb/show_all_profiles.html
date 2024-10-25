@@ -24,7 +24,7 @@
                     <td><a href="{% url 'show_profile' p.pk %}">{{p.first}} {{p.last}}</a></td>
                      <td>{{p.city}}</td>
                      <td>{{p.email}}</td>
-                     <td><a href="{% url 'show_profile' p.pk %}"><img src={{p.profile_img_url}}></a></td>
+                     <td><a href="{% url 'show_profile' p.pk %}"><img src={{p.profile_img_url}} class="images"></a></td>
                  </tr>
                  {% endfor %}
              </tbody>

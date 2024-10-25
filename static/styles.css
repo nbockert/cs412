@@ -33,7 +33,7 @@ body{
     background-color: #ddd;
     color: black;
 }
-img {
+.images {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -86,19 +86,18 @@ table{
     text-align: center;
 
 }
-.profile-container {
-    display: flex;
-    align-items: center; /* Align items (image and info) vertically */
-    justify-content: center; /* Center the whole container on the page */
-}
 
+#name{
+    text-align: left;
+}
 
 .profile-info {
     display: flex;
     flex-direction: column; /* Stack the icons vertically */
-    align-items: center; /* Align icons and text to the left */
-    justify-content: center;
-    text-align: left;        /* Ensure the text is aligned to the left */
+    text-align: left;   
+    /* Align items (image and info) vertically */
+    justify-content: center;     /* Ensure the text is aligned to the left */
+    margin-left: 10px;
 }
 
 .icon-text {
@@ -142,5 +141,43 @@ table{
 #statuscreate{
     display: block;
     font-size: 25px;
+    margin-left:40px;
+}
+.profile_container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border: 4px solid #fff;
+    background-color: #fff;
+    border-radius: 8px;
+    
+}
+
+.profile_image {
+    width: 100%; /* Make the image take the full width of the container */
+    height: 150px; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image covers the container */
+}
+#profile_img{
+    /* margin-left: auto;
+    margin-right: auto; */
+    width: 400px;
+    height: auto;
+}
+#myfriends{
+    display: block;
+    font-size: 25px;
     text-align: center;
+}
+.friends{
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
+}
+.profile_facts {
+    margin-top:30px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
 }

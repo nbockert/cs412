@@ -7,11 +7,10 @@
  {% block content %}
  <main class="grid_container">
  <profile>
-
-    <h1>{{profile.first}} {{profile.last}}</h1>
+    <div class="profile_facts">
     <img id="profile_img" src="{{profile.profile_img_url}}">
-    <div class="profile-container">
         <div class="profile-info">
+            <h1 id="name">{{profile.first}} {{profile.last}}</h1>
             <span class="icon-text">
                 <img src="/static/home-icon.png" alt="icon" class="icon">
                 <h2>{{ profile.city }}</h2>
@@ -20,9 +19,28 @@
                 <img src="/static/email-icon.png" alt="icon" class="icon">
                 <h2><a id="email" href="mailto:{{ profile.email }}" rel="nofollow">{{ profile.email }}</a></h2>
             </span>
-        </div>
+            <a href="{%url 'update_profile' profile.pk%}" id="statuscreate">Update Profile</a>
     </div>
-    <a href="{%url 'update_profile' profile.pk%}" id="statuscreate">Update Profile</a>
+    
+</div>
+
+    <strong id="myfriends">{{profile.first}}'s Friends</strong>
+    <div class="friends">
+    {%if profile.get_friends%}
+        {% for friend in profile.get_friends %}
+            <a href="{%url 'show_profile' friend.pk%}">
+                <div class="profile_container">
+                    <img src="{{friend.profile_img_url}}" class="profile_image">
+                </div>
+                {{ friend.first }} {{ friend.last }}
+            </a>
+
+        {% endfor %}
+    {%endif%}
+</div>
+
+        
+</div>
 
 <div class="status">
     <p>Status Messages</p>
@@ -34,7 +52,7 @@
             <p>{{p.message}}</p>
             {% if p.get_images %}
                 {% for img in p.get_images%}
-                    <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
+                    <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}' class="images">
                 {% endfor %}
             {%endif%}
             <small id="time">{{p.timestamp}}</small>

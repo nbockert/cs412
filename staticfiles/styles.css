@@ -33,23 +33,16 @@ body{
     background-color: #ddd;
     color: black;
 }
-img {
-    display: block;
+
+
+.show_all_images{
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    gap: 10px; /* Optional: Adds space between images */
     margin-left: auto;
     margin-right: auto;
     width: 400px;
     height: auto;
-}
-
-.showall {
-    display: flex;
-    justify-content: center; /* Center the images horizontally */
-    gap: 10px; /* Optional: Adds space between images */
-}
-
-.showall img {
-    width: 400px; /* Adjust the size of the images */
-    height: auto; /* Keeps the image aspect ratio */
 }
 
 
@@ -86,7 +79,7 @@ table{
     text-align: center;
 
 }
-.profile-container {
+.profile_facts {
     display: flex;
     align-items: center; /* Align items (image and info) vertically */
     justify-content: center; /* Center the whole container on the page */
@@ -96,8 +89,6 @@ table{
 .profile-info {
     display: flex;
     flex-direction: column; /* Stack the icons vertically */
-    align-items: center; /* Align icons and text to the left */
-    justify-content: center;
     text-align: left;        /* Ensure the text is aligned to the left */
 }
 
@@ -127,6 +118,13 @@ table{
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+/* .profile_img{
+    display:flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: auto;
+} */
 
 #createprofile{
     margin-left: 326px;

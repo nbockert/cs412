@@ -85,26 +85,7 @@ class UpdateStatusMessageView(UpdateView):
     template_name = 'mini_fb/update_status_form.html'
     context_object_name= 'update'
     form_class = UpdateStatusForm
-    # def get_context_data(self, **kwargs):
-    #     '''Adds the profile object to the context data.'''
-    #     context = super().get_context_data(**kwargs)
-    #     profile = Profile.objects.get(pk=self.kwargs['pk'])
-    #     context['profile'] = profile
-    #     return context
 
-    # def form_valid(self, form):
-    #     '''Map status message to correct profile'''
-    #     profile = Profile.objects.get(pk=self.kwargs['pk'])
-    #     form.instance.profile = profile
-    #     # save the status message to database
-    #     sm = form.save()
-    #     # read the file from the form:
-    #     files = self.request.FILES.getlist('files')
-    #     for f in files:
-    #         image = Image(image_file=f,statusmessage=sm)
-    #         image.save()
-
-    #     return super().form_valid(form)
     def get_success_url(self):
         '''Redirect to the profile page after successfully updating a StatusMessage.'''
         return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
