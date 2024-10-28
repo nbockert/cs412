@@ -111,20 +111,30 @@ table{
     height: auto;
     margin-right: 8px;  /* Space between the icon and the text */
 }
-.status{
+/* .status{
     text-align: center;
+    align-items: center;
 
-}
-.status div {
-    display: block;
-    align-items: center; /* Align items (image and info) vertically */
-    justify-content: center; /* Center the whole container on the page */
+} */
+
+#status div{
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: flex-start; 
     width: 80%;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin: 0 auto 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.profile-img {
+    display: inline-flex;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Same as width for a perfect circle */
+    border-radius: 50%; /* Makes the image a circle */
+    margin-right: 10px; /* Space between the image and the name */
+    object-fit: cover; /* Ensures the image covers the entire area without stretching */
+    align-items: left;
 }
 
 #createprofile{
@@ -145,7 +155,7 @@ table{
 }
 .profile_container {
     width: 150px;
-    height: 150px;
+    height: auto;
     overflow: hidden;
     border: 4px solid #fff;
     background-color: #fff;
@@ -181,3 +191,28 @@ table{
     align-items: center; /* Align items (image and info) vertically */
     justify-content: center; /* Center the whole container on the page */
 }
+.status_images{
+    width: 400px;
+    height: auto;
+    display: flex;
+    margin-left: auto;
+}
+
+.status_text{
+    display: flex;
+    text-align: left;
+}
+.timestamp {
+    display: flex;
+    text-align: left;
+    align-self: flex-end; /* Align the timestamp to the bottom */
+    margin-top: auto; /* Push it to the bottom of the container */
+    font-size: 0.8em; /* Optional: Make the timestamp smaller */
+    color: gray; /* Optional: Change color for better visibility */
+}
+/* .status_header div{
+    flex-direction: column; 
+    justify-content: left;
+    text-align: left;
+    width: 20%;
+} */

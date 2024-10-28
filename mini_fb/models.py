@@ -21,30 +21,60 @@ class Profile(models.Model):
     def __str__(self):
         '''Return the string representation of this profile'''
         return f'{self.first} {self.last}'
+    
     def get_status_messages(self):
         '''Return all status messages for this profile, ordered by timestamp descending.'''
         # return self.status_msg.all().order_by('-timestamp')
         status = StatusMessage.objects.filter(profile=self)
         return status
+    
     def get_absolute_url(self):
         '''Return the URL to access a particular profile instance.'''
         return reverse('show_profile', kwargs={'pk': self.pk})
+    
     def get_friends(self):
         '''Return a list of profiles that are friends with this profile.'''
         # Get friends where this profile is profile1
         friends_as_profile1 = Friend.objects.filter(profile1=self).values_list('profile2', flat=True)
-        
         # Get friends where this profile is profile2
         friends_as_profile2 = Friend.objects.filter(profile2=self).values_list('profile1', flat=True)
-        
         # Combine both sets of friends into a single list
         all_friend_ids = list(friends_as_profile1) + list(friends_as_profile2)
-        
         # Retrieve Profile instances for all these IDs
         friends_profiles = Profile.objects.filter(id__in=all_friend_ids)
-        
         # Convert the QuerySet to a list and return
         return list(friends_profiles)
+    
+    def add_friend(self, other):
+        # Check if 'other' is not the same as 'self'
+        if self == other:
+            return  # Do nothing if attempting to add self as a friend
+        # Check if a Friend relationship already exists (in either direction)
+        exists_as_profile1 = Friend.objects.filter(profile1=self, profile2=other).exists()
+        exists_as_profile2 = Friend.objects.filter(profile1=other, profile2=self).exists()
+        # If no relationship exists, create a new Friend instance
+        if not (exists_as_profile1 or exists_as_profile2):
+            Friend.objects.create(profile1=self, profile2=other)
+    
+    def get_friend_suggestions(self):
+        '''Return a list of profiles that are not friends with this profile and do not include this profile.'''
+        # Get all profiles excluding the current profile
+        all_profiles = Profile.objects.exclude(id=self.id)
+        # Get profiles that are already friends with this profile
+        friends_profiles = self.get_friends()
+        # Exclude already-friends profiles from all_profiles to get suggestions
+        suggestions = all_profiles.exclude(id__in=[friend.id for friend in friends_profiles])
+        return suggestions
+    def get_news_feed(self):
+        '''Return a QuerySet of status messages from this profile and all friends, ordered by recency.'''
+        # Get this profile's ID and all friend IDs.
+        profile_ids = [self.id] + [friend.id for friend in self.get_friends()]
+        # Retrieve status messages for this profile and all friends.
+        status_messages = StatusMessage.objects.filter(profile__id__in=profile_ids).order_by('-timestamp')
+        return status_messages
+    
+
+
    
     
     

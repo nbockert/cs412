@@ -7,6 +7,7 @@
  {% block content %}
  <main class="grid_container">
  <profile>
+    <a href="{%url 'news_feed' profile.pk%}">See {{profile}}'s News Feed</a>
     <div class="profile_facts">
     <img id="profile_img" src="{{profile.profile_img_url}}">
         <div class="profile-info">
@@ -38,11 +39,12 @@
         {% endfor %}
     {%endif%}
 </div>
+<a href="{% url 'friend_suggestions' profile.pk %}">See Friend Suggestions</a>
 
         
 </div>
 
-<div class="status">
+<div id="status">
     <p>Status Messages</p>
     <a href="{% url 'create_status' profile.pk%}" id="statuscreate">Create Status</a>
     {% if profile.get_status_messages %}
@@ -50,12 +52,13 @@
         <div>
             <strong><p>{{p.profile}}:</p></strong>
             <p>{{p.message}}</p>
+            <small id="time">{{p.timestamp}}</small>
             {% if p.get_images %}
                 {% for img in p.get_images%}
                     <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}' class="images">
                 {% endfor %}
             {%endif%}
-            <small id="time">{{p.timestamp}}</small>
+            
             <a href="{% url 'update_status' p.pk %}">Update Status</a>
             <a href="{% url 'delete_status' p.pk %}">Delete Status</a>
 
