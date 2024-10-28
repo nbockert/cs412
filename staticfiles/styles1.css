@@ -3,6 +3,10 @@ body{
     color: #164863;
     font-family:'Courier New', Courier, monospace;
 }
+/* div {
+    display: block;
+    unicode-bidi: isolate;
+} */
 .navbar {
     background-color: #164863;
     overflow: hidden;
@@ -33,7 +37,7 @@ body{
     background-color: #ddd;
     color: black;
 }
-.images {
+img {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -61,7 +65,6 @@ body{
 } */
 h1{
     font-size: 40px;
-    text-align: center;
     color: #164863;
 
 }
@@ -86,18 +89,19 @@ table{
     text-align: center;
 
 }
-
-#name{
-    text-align: left;
+.profile-container {
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
 }
+
 
 .profile-info {
     display: flex;
     flex-direction: column; /* Stack the icons vertically */
-    text-align: left;   
-    /* Align items (image and info) vertically */
-    justify-content: center;     /* Ensure the text is aligned to the left */
-    margin-left: 10px;
+    align-items: center; /* Align icons and text to the left */
+    justify-content: center;
+    text-align: left;        /* Ensure the text is aligned to the left */
 }
 
 .icon-text {
@@ -111,32 +115,24 @@ table{
     height: auto;
     margin-right: 8px;  /* Space between the icon and the text */
 }
-/* .status{
+.status{
     text-align: center;
-    align-items: center;
 
-} */
-
-#status div{
-    display: flex; /* Use flexbox for horizontal alignment */
-    justify-content: flex-start; 
+}
+.status div {
+    display: block;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
     width: 80%;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    margin: 0 auto 10px;
+    margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.profile-img {
-    display: inline-flex;
-    width: 40px; /* Adjust size as needed */
-    height: 40px; /* Same as width for a perfect circle */
-    border-radius: 50%; /* Makes the image a circle */
-    margin-right: 10px; /* Space between the image and the name */
-    object-fit: cover; /* Ensures the image covers the entire area without stretching */
-    align-items: left;
+.profile_facts{
+    display: flex;
 }
-
 #createprofile{
     margin-left: 326px;
     margin-right: auto;
@@ -151,26 +147,26 @@ table{
 #statuscreate{
     display: block;
     font-size: 25px;
-    margin-left:40px;
+    text-align: center;
 }
 .profile_container {
     width: 150px;
-    height: auto;
+    height: 150px;
     overflow: hidden;
     border: 4px solid #fff;
     background-color: #fff;
     border-radius: 8px;
     
 }
-
 .profile_image {
     width: 100%; /* Make the image take the full width of the container */
     height: 150px; /* Maintain aspect ratio */
     object-fit: cover; /* Ensures the image covers the container */
 }
-#profile_img{
-    /* margin-left: auto;
-    margin-right: auto; */
+.profile_img{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
     width: 400px;
     height: auto;
 }
@@ -184,35 +180,3 @@ table{
     align-items: center; /* Align items (image and info) vertically */
     justify-content: center; /* Center the whole container on the page */
 }
-.profile_facts {
-    margin-top:30px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center; /* Align items (image and info) vertically */
-    justify-content: center; /* Center the whole container on the page */
-}
-.status_images{
-    width: 400px;
-    height: auto;
-    display: flex;
-    margin-left: auto;
-}
-
-.status_text{
-    display: flex;
-    text-align: left;
-}
-.timestamp {
-    display: flex;
-    text-align: left;
-    align-self: flex-end; /* Align the timestamp to the bottom */
-    margin-top: auto; /* Push it to the bottom of the container */
-    font-size: 0.8em; /* Optional: Make the timestamp smaller */
-    color: gray; /* Optional: Change color for better visibility */
-}
-/* .status_header div{
-    flex-direction: column; 
-    justify-content: left;
-    text-align: left;
-    width: 20%;
-} */
