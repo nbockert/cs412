@@ -1,0 +1,22 @@
+<!-- mini_fb/templates/mini_fb/login.html -->
+
+{% extends 'mini_fb/base.html'  %}
+
+{% block content %}
+
+<h1>Logout</h1>
+<p id="statuscreate">Are you sure you want to log out?</p>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="submit" name="submit" value="Logout" class="button-29" id="logout">
+    <!-- what page to show next, i.e., after login success -->
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{request.GET.next}}">
+    {% else %}
+    <input type="hidden" name="next" value="{% url 'show_all_profiles' %}">
+    {% endif %}
+</form>
+
+{% endblock %}

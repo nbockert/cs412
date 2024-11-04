@@ -8,11 +8,28 @@
         <nav>
             <div class="navbar">
                 <ul>
+                    <!--These urls do not depend on which user is logged in-->
                     <li><a href="{%url 'show_all' profiles.pk%}"></a></ul>
                     <li><a href="{%url 'random'%}"></a></ul>
-                    <li><a href="{%url 'create_article'%}"></a></ul>
+                        <!--This should show up when a user is logged in-->
+                        {%if request.user.is_authenticated%}
+                        <li><a href="{%url 'create_article'%}"></a></ul>
+                            <form action="{%url 'logout'%}" method="POST"></form>
+                            <li><a href="{%url 'logout'%}"></a></ul>
+                        {%else%}
+                        <li><a href="{%url 'login'%}"></a></ul>
+                        {%endif%}
                 </ul>
         </div>
+        <p>
+            <!--request is the HTTP request object and request.user is the Django user associated with this request-->
+            {% if request.user.is_authenticated%}
+            {{request.user}} is logged in
+            {%else%}
+            Not logged in 
+            {%endif%}
+        </p>
+        
         </nav>
         
     {% block content %}

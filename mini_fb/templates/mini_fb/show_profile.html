@@ -7,7 +7,8 @@
  {% block content %}
  <main class="grid_container">
  <profile>
-    <a href="{%url 'news_feed' profile.pk%}">See {{profile}}'s News Feed</a>
+    
+    <a href="{%url 'news_feed' profile.pk%}" class="button-29">{{profile}}'s News Feed</a>
     <div class="profile_facts">
     <img id="profile_img" src="{{profile.profile_img_url}}">
         <div class="profile-info">
@@ -20,7 +21,9 @@
                 <img src="/static/email-icon.png" alt="icon" class="icon">
                 <h2><a id="email" href="mailto:{{ profile.email }}" rel="nofollow">{{ profile.email }}</a></h2>
             </span>
-            <a href="{%url 'update_profile' profile.pk%}" id="statuscreate">Update Profile</a>
+            {% if request.user.is_authenticated %}
+            <a href="{%url 'update_profile' profile.pk%}">Update Profile</a>
+            {%endif%}
     </div>
     
 </div>
@@ -39,29 +42,37 @@
         {% endfor %}
     {%endif%}
 </div>
-<a href="{% url 'friend_suggestions' profile.pk %}" class='links'>See Friend Suggestions</a>
+<br>
+<a href="{% url 'friend_suggestions' profile.pk %}" id='statuscreate'>See Friend Suggestions</a>
 
         
 </div>
 
 <div id="status">
     <p>Status Messages</p>
+    {% if request.user.is_authenticated %}
     <a href="{% url 'create_status' profile.pk%}" id="statuscreate">Create Status</a>
+    {% else %}
+    <a href="{% url 'create_profile' %}" id="statuscreate">Create New Profile</a>
+    {% endif %}
     {% if profile.get_status_messages %}
         {% for p in profile.get_status_messages %}
         <div>
+            <img src="{{ profile.profile_img_url }}" alt="{{ p.first }} {{ p.last }}" class="profile-img"/>
             <strong><p>{{p.profile}}:</p></strong>
-            <p>{{p.message}}</p>
-            <small id="time">{{p.timestamp}}</small>
+            
+
+            <p class="status_text">{{ p.message }}</p>
+            <small class="timestamp">{{ p.timestamp }}</small>
             {% if p.get_images %}
                 {% for img in p.get_images%}
                     <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}' class="images">
                 {% endfor %}
             {%endif%}
-            
+            {% if request.user.is_authenticated %}
             <a href="{% url 'update_status' p.pk %}">Update Status</a>
             <a href="{% url 'delete_status' p.pk %}">Delete Status</a>
-
+            {% endif %}
         </div>
         {% endfor %}
     {% else %}

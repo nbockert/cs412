@@ -5,6 +5,7 @@
 #
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 class Article(models.Model):
     '''Encapsulate the idea of an Article by some author.'''
     # data attributes of a Article:
@@ -13,7 +14,7 @@ class Article(models.Model):
     text = models.TextField(blank=False)
     published = models.DateTimeField(auto_now=True)
     image_file = models.ImageField(blank=True)
-    
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     def __str__(self):
         '''Return a string representation of this Article object.'''
         return f'{self.title} by {self.author}'

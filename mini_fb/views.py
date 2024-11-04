@@ -11,6 +11,9 @@ from django.views.generic import ListView, DetailView, CreateView,UpdateView,Del
 from .models import *
 from .forms import *
 from typing import Any
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+
 # from django.urls import reverse
 
 class ShowAllProfilesView(ListView):
@@ -30,13 +33,40 @@ class CreateProfileView(CreateView):
     model = Profile
     form_class = CreateProfileForm
     template_name = 'mini_fb/create_profile_form.html'
+    def get_context_data(self, **kwargs: Any):
+        '''Adds the profile object to the context data.'''
+        context = super().get_context_data(**kwargs)
+        user_creation_form = UserCreationForm()
+        # Add the form instance to the context
+        context['user_creation_form'] = user_creation_form
+        return context
+    def form_valid(self, form):
+        # Reconstruct the UserCreationForm with POST data
+        user_creation_form = UserCreationForm(self.request.POST)
+        
+        # Check if the UserCreationForm is valid
+        if user_creation_form.is_valid():
+            # Save the user and get the User instance
+            user = user_creation_form.save()
+            
+            # Attach the new user to the Profile instance
+            form.instance.user = user
+            
+            # Delegate the rest to the superclass method
+            return super().form_valid(form)
+        
+        # If the user creation form is not valid, redirect back to the form with errors
+        return self.form_invalid(form)
 
-class CreateStatusMessageView(CreateView):
+
+class CreateStatusMessageView(LoginRequiredMixin,CreateView):
     '''Create a subclass of CreateView to handle profile creation.'''
     model = StatusMessage
     form_class = CreateStatusMessageForm
     template_name = 'mini_fb/create_status_form.html'
-    
+    def get_login_url(self) -> str:
+        '''return the URL required for login'''
+        return reverse('login') 
     def get_context_data(self, **kwargs):
         '''Adds the profile object to the context data.'''
         context = super().get_context_data(**kwargs)
@@ -61,30 +91,45 @@ class CreateStatusMessageView(CreateView):
     def get_success_url(self):
         '''Redirect to the profile page after successfully posting a status message.'''
         return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
+   
 
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(LoginRequiredMixin,UpdateView):
     model=Profile
     form_class = UpdateProfileForm
     template_name = 'mini_fb/update_profile_form.html'
+    def get_login_url(self) -> str:
+        '''return the URL required for login'''
+        return reverse('login') 
     def get_success_url(self):
         '''Redirect to the profile page after successfully updating profile.'''
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
+    def dispatch(self, request):
+        '''add this method to show/debug logged in user'''
+        print(f"Logged in user: request.user={request.user}")
+        print(f"Logged in user: request.user.is_authenticated={request.user.is_authenticated}")
+        return super().dispatch(request)
 
-class DeleteStatusMessageView(DeleteView):
+class DeleteStatusMessageView(LoginRequiredMixin,DeleteView):
     '''View to delete status messages'''
     model = StatusMessage
     template_name = 'mini_fb/delete_status_form.html'
     context_object_name= 'delete'
+    def get_login_url(self) -> str:
+        '''return the URL required for login'''
+        return reverse('login') 
     def get_success_url(self):
         '''Redirect to the profile page after successfully deleting a StatusMessage.'''
         return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
 
-class UpdateStatusMessageView(UpdateView):
+class UpdateStatusMessageView(LoginRequiredMixin,UpdateView):
     '''View to update status messages'''
     model = StatusMessage
     template_name = 'mini_fb/update_status_form.html'
     context_object_name= 'update'
     form_class = UpdateStatusForm
+    def get_login_url(self) -> str:
+        '''return the URL required for login'''
+        return reverse('login') 
 
     def get_success_url(self):
         '''Redirect to the profile page after successfully updating a StatusMessage.'''

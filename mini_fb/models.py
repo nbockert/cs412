@@ -9,6 +9,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Profile(models.Model):
     '''Data attributes of Profile'''
@@ -17,6 +18,7 @@ class Profile(models.Model):
     city = models.TextField(blank=False)
     email = models.TextField(blank=False)
     profile_img_url = models.URLField(blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # image_file = models.ImageField(blank=True)
     def __str__(self):
         '''Return the string representation of this profile'''

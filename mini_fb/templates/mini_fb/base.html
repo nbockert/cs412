@@ -12,7 +12,17 @@
              <div class="navbar">
              <ul>
                 <li><a href="{% url 'show_all_profiles' %}">Show All Profiles</a></li>
+                {% if request.user.is_authenticated %}
+                Logged in user: {{ request.user }}.
+                <li><form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Logout" class="button-29">
+                </form></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'create_profile' %}">Create New Profile</a></li>
+                {% endif %}
+                
                 
              </ul>
          </div>

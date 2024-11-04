@@ -9,11 +9,22 @@ import random
 from .forms import *
 from django.urls import reverse
 from typing import Any
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User 
+from django.contrib.auth import login 
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect 
 class ShowAllView(ListView):
     '''Create a subclass of ListView to display all blog articles.'''
     model = Article # retrieve objects of type Article from the database
     template_name = 'blog/show_all.html'
     context_object_name = 'articles' # how to find the data in the template file
+    def dispatch(self,*args,**kwargs):
+        '''implement this method to add some debug tracing '''
+        #let the superclass version of this method do its work
+        print(f"ShowallView.dispatch; self.request.user={self.request.user}")
+        return super().dispatch(*args,**kwargs)
 
 class RandomArticleView(DetailView):
     '''Display one article selected at random '''
@@ -65,11 +76,43 @@ class CreateCommentView(CreateView):
         #delegate work to superclass version of this method
         return super().form_valid(form)
 
-class CreateArticleView(CreateView):
+#order that you pass in determines who has priority inheritance 
+class CreateArticleView(LoginRequiredMixin,CreateView):
     '''A class to create a new Article Instance'''
     form=CreateArticleForm
     template_name='blog/create_article_form.html'
+    def get_login_url(self):
+        '''return url of login page'''
+        return reverse('login')
     def form_valid(self,form):
         '''This method is called as part of the form processing.'''
         print(f'CreateArticleView.form_valid():form.cleaned_data={form.cleaned_data}')
+        #find the user who is logged in 
+        user = self.request.user
+        #attatch that user as a FK to the new Article instance
+        form.instance.user = user 
+        #let the superclass do the work 
         return super().form_valid(form)
+class RegistrationView(CreateView):
+    '''handel of registration for new users'''
+    template_name='blog/registration.html'
+    form_class = UserCreationForm #built-in from django package 
+    def dispatch(self,request:HttpRequest,*args:Any,**kwargs:Any)->HttpResponse:
+        if self.request.POST:
+            print(f"RegistrationView.dispatch: self.request.POST={self.request.POST}")
+            #reconstruct the UserCreateForm from the POST data
+            form = UserCreationForm(self.request.POST)
+            #save the form which creates a new user 
+            if not form.is_valid():
+                print(f"form.errors={form.errors}")
+                return super().dispatch(request,*args,**kwargs)
+            user = form.save() #will commit the insert to database 
+            #log in the user
+            login(self.request,user)
+            #note to mini_fb: attach the FK user to the Profile form instance 
+            #return a response 
+            return redirect(reverse('show_all'))
+        #let CreateView.dispatch handle the HTTP GET request 
+        return super().dispatch(request,*args,**kwargs)
+
+
