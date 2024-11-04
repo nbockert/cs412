@@ -30,3 +30,4 @@ class UpdateStatusForm(forms.ModelForm):
             '''Associate this HTML form with the Profile data model'''
             model = StatusMessage
             fields = ['message'] 
+            
