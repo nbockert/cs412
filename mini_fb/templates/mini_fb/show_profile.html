@@ -22,7 +22,7 @@
                 <img src="/static/email-icon.png" alt="icon" class="icon">
                 <h2><a id="email" href="mailto:{{ profile.email }}" rel="nofollow">{{ profile.email }}</a></h2>
             </span>
-            {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated and request.user == profile.user %}
             <a href="{%url 'update_profile'%}">Update Profile</a>
             {%endif%}
     </div>
@@ -53,10 +53,9 @@
 
 <div id="status">
     <p>Status Messages</p>
-    {% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated and request.user == profile.user%}
     <a href="{% url 'create_status'%}" id="statuscreate">Create Status</a>
-    {% else %}
-    <a href="{% url 'create_profile' %}" id="statuscreate">Create New Profile</a>
+
     {% endif %}
     {% if profile.get_status_messages %}
         {% for p in profile.get_status_messages %}
