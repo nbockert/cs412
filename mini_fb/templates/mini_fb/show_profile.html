@@ -43,7 +43,9 @@
     {%endif%}
 </div>
 <br>
-<a href="{% url 'friend_suggestions' profile.pk %}" id='statuscreate'>See Friend Suggestions</a>
+{% if request.user.is_authenticated and request.user == profile.user %}
+<a href="{% url 'friend_suggestions' profile.pk %}" id="statuscreate">See Friend Suggestions</a>
+{% endif %}
 
         
 </div>
@@ -68,7 +70,7 @@
                     <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}' class="images">
                 {% endfor %}
             {%endif%}
-            {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated and request.user == profile.user %}
             <a href="{% url 'update_status' p.pk %}">Update Status</a>
             <a href="{% url 'delete_status' p.pk %}">Delete Status</a>
             {% endif %}
