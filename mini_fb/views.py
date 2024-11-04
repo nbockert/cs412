@@ -125,8 +125,9 @@ class DeleteStatusMessageView(LoginRequiredMixin,DeleteView):
         '''return the URL required for login'''
         return reverse('login') 
     def get_success_url(self):
-        '''Redirect to the profile page after successfully deleting a StatusMessage.'''
-        return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
+        '''Redirect to the profile page after successfully posting a status message.'''
+        profile = Profile.objects.get(user=self.request.user)
+        return reverse('show_profile', kwargs={'pk': profile.pk})
     
 
 class UpdateStatusMessageView(LoginRequiredMixin,UpdateView):
@@ -140,9 +141,9 @@ class UpdateStatusMessageView(LoginRequiredMixin,UpdateView):
         return reverse('login') 
 
     def get_success_url(self):
-        '''Redirect to the profile page after successfully updating a StatusMessage.'''
-        return reverse('show_profile', kwargs={'pk': self.object.pk})
-
+        '''Redirect to the profile page after successfully posting a status message.'''
+        profile = Profile.objects.get(user=self.request.user)
+        return reverse('show_profile', kwargs={'pk': profile.pk})
 class  CreateFriendView(View):
     '''View to handle adding a friend relationship between two profiles.'''
 
