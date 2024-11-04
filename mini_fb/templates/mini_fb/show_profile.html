@@ -7,8 +7,9 @@
  {% block content %}
  <main class="grid_container">
  <profile>
-    
-    <a href="{%url 'news_feed' profile.pk%}" class="button-29">{{profile}}'s News Feed</a>
+    {% if request.user.is_authenticated and request.user == profile.user %}
+    <a href="{%url 'news_feed' %}" class="button-29">{{profile}}'s News Feed</a>
+    {%endif%}
     <div class="profile_facts">
     <img id="profile_img" src="{{profile.profile_img_url}}">
         <div class="profile-info">
@@ -22,7 +23,7 @@
                 <h2><a id="email" href="mailto:{{ profile.email }}" rel="nofollow">{{ profile.email }}</a></h2>
             </span>
             {% if request.user.is_authenticated %}
-            <a href="{%url 'update_profile' profile.pk%}">Update Profile</a>
+            <a href="{%url 'update_profile'%}">Update Profile</a>
             {%endif%}
     </div>
     
@@ -44,7 +45,7 @@
 </div>
 <br>
 {% if request.user.is_authenticated and request.user == profile.user %}
-<a href="{% url 'friend_suggestions' profile.pk %}" id="statuscreate">See Friend Suggestions</a>
+<a href="{% url 'friend_suggestions' %}" id="statuscreate">See Friend Suggestions</a>
 {% endif %}
 
         
@@ -53,7 +54,7 @@
 <div id="status">
     <p>Status Messages</p>
     {% if request.user.is_authenticated %}
-    <a href="{% url 'create_status' profile.pk%}" id="statuscreate">Create Status</a>
+    <a href="{% url 'create_status'%}" id="statuscreate">Create Status</a>
     {% else %}
     <a href="{% url 'create_profile' %}" id="statuscreate">Create New Profile</a>
     {% endif %}

@@ -12,7 +12,7 @@
                     <img src="{{friend.profile_img_url}}" class="profile_image">
                     {{ friend.first }} {{ friend.last }}
                     <br>
-                    <a href="{% url 'add_friend' profile.pk friend.pk %}">Add Friend</a>
+                    <a href="{% url 'add_friend' friend.pk %}">Add Friend</a>
                 </div>
 
                 
