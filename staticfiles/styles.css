@@ -286,3 +286,73 @@ table{
 #center{
     text-align: center;
 }
+
+  /* General styling for the form */
+  .filter-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+      font-family: Arial, sans-serif;
+  }
+
+  /* Style individual labels and inputs */
+  .filter-form label {
+      font-weight: bold;
+      margin-right: 5px;
+      display: flex;
+      align-items: center;
+  }
+
+  /* Ensure all select and input elements have the same size */
+  .filter-form select,
+  .filter-form input[type="checkbox"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+
+  /* Style the fieldset and legend */
+  fieldset {
+      grid-column: span 2;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+  }
+
+  legend {
+      font-weight: bold;
+      font-size: 1.1em;
+  }
+
+  /* Align checkboxes horizontally */
+  fieldset label {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 10px;
+      font-weight: normal;
+  }
+
+  /* Style for the submit button */
+  .filter-form button[type="submit"] {
+      grid-column: span 2;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+  }
+
+  .filter-form button[type="submit"]:hover {
+      background-color: #0056b3;
+  }
+
