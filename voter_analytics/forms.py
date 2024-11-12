@@ -80,7 +80,7 @@ class VoterDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         voter = self.get_object()
         # Create Google Maps URL for the address
-        address = f"{voter.street_name}+Newton+MA+{voter.zip_code}"
+        address = f"{voter.address_street}+Newton+MA+{voter.address_zip}"
         context['map_url'] = f"https://www.google.com/maps/search/?api=1&query={address}"
         return context
 
