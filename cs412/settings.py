@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     # "blog",
     "mini_fb",
     "marathon_analytics",
-    "personalwebsite",
+    # "personalwebsite",
     "voter_analytics"
 ]
 
