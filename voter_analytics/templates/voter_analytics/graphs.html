@@ -1,0 +1,24 @@
+
+{% extends 'voter_analytics/base.html' %}
+
+{% block content %}
+        <h1>Voter Data Graphs</h1>
+
+        <!-- Filter Form -->
+        <form method="get" class="filter-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Apply Filters</button>
+            <a href="{% url 'graphs' %}">Clear Filters</a>
+        </form>
+      
+        <!-- Graphs -->
+        <h2>Distribution of Voters by Year of Birth</h2>
+        <div>{{ birth_year_graph|safe }}</div>
+      
+        <h2>Distribution of Voters by Party Affiliation</h2>
+        <div>{{ party_graph|safe }}</div>
+      
+        <h2>Distribution of Voter Participation by Election</h2>
+        <div>{{ election_graph|safe }}</div>
+{%endblock%}

@@ -31,6 +31,12 @@ urlpatterns = [
     # path('blog/', include('blog.urls')),
     path("", include("mini_fb.urls")),
     path('mini_fb/', include('mini_fb.urls')),
+    path("", include("marathon_analytics.urls")),
+    path('marathon_analytics/', include('marathon_analytics.urls')),
+    path("", include("personalwebsite.urls")),
+    path(r'personalwebsite/', include('personalwebsite.urls')),
+    path("", include("voter_analytics.urls")),
+    path(r'voter_analytics/', include('voter_analytics.urls')),
 
                             
 ]
