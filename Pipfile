@@ -10,6 +10,7 @@ pillow = "*"
 plotly = "*"
 pandas = "*"
 geopy = "*"
+pycountry = "*"
 
 [dev-packages]
 
