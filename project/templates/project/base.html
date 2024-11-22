@@ -1,0 +1,37 @@
+<!-- project/templates/project/base.html
+ nbockert@bu.edu
+ base.html provides a directory for templates-->
+{% load static %}
+<html>
+    <head>
+        <title>Wander</title>
+        <link rel="stylesheet" href="/static/proj_styles.css">
+    </head>
+    <body>
+        <nav>
+            <div class="navbar">
+            <ul>
+               <li><a href="{% url 'show_all_accounts' %}">Show All Accounts</a></li>
+               {% if request.user.is_authenticated %}
+               Logged in user: {{ request.user }}.
+               <li><form action="{% url 'logout' %}" method="POST">
+                   {% csrf_token %}
+                   <input type="submit" value="Logout" class="button-29">
+               </form></li>
+               {% else %}
+               <li><a href="{% url 'login' %}">Login</a></li>
+               <li><a href="{% url 'create_profile' %}">Create New Profile</a></li>
+               {% endif %}
+               
+               
+            </ul>
+        </div>
+        </nav>
+        
+    {% block content %}
+    <!--fill in this section with specific page detail-->
+
+    {% endblock %}
+
+    </body>
+</html>

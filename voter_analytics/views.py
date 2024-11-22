@@ -21,7 +21,6 @@ class VoterListView(ListView):
     template_name = 'voter_analytics/voter_list.html'  # Template file for listing voters
     context_object_name = 'voters'  # Context name to use in the template
     paginate_by = 100  # Display 100 voters per page
-   
     def get_queryset(self) -> QuerySet[Any]:
         '''Limit the results to a small number of records'''
         print(self.request.GET)

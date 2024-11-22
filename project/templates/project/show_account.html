@@ -1,0 +1,111 @@
+{%extends 'project/base.html'%}
+{%block content%}
+
+
+<div class="account_facts">
+    {% if account.get_images%}
+    {%for a in account.get_images%}
+    <img class="account-img" src="{{a.image_file.url}}">
+    {%endfor%}
+    {%endif%}
+
+        <div class="account-info">
+            <h1 class="header">{{account}}</h1>
+            <span class="icon-text">
+                <img src="/static/home-icon.png" alt="icon" class="icon">
+                <h2>{{ account.city }}</h2>
+            </span>
+            <span class="icon-text">
+                <img src="/static/email-icon.png" alt="icon" class="icon">
+                <h2><a id="email" href="mailto:{{ account.email }}" rel="nofollow">{{ account.email }}</a></h2>
+            </span>
+    </div>
+    
+</div>
+<strong id="myfriends">{{account.first}}'s Friends</strong>
+<div class="friends">
+{%if account.get_friends%}
+    {% for friend in account.get_friends %}
+        <a href="{%url 'show_account' friend.pk%}">
+            <div class="profile_container">
+            {% if friend.get_images%}
+            {%for f in friend.get_images%}
+                <img src="{{f.image_file.url}}" class="profile_image">
+            {%endfor%}
+            {%endif%}
+                
+            </div>
+            {{ friend.first }} {{ friend.last }}
+        </a>
+
+    {% endfor %}
+{%endif%}
+</div>
+<br>
+<div id="trip">
+    <strong><p>Trips</p></strong>
+    {% if account.get_trips %}
+        {% for t in account.get_trips %}
+        <div class="trip-box">
+           
+                 <!-- Center top: Trip name -->
+            <h2 class="trip-name">{{ t }}</h2>
+             <!-- Top-left corner: Profile image and name -->
+            <div class="profile-header">
+                {% if account.get_images%}
+                {%for a in account.get_images%}
+                    <img src="{{a.image_file.url}}" alt="{{ account.first }} {{ account.last }}" class="profile-img">
+                {%endfor%}
+                {%endif%}
+                <strong>{{ account }}</strong>
+            </div>
+        
+            <!-- Underneath: Trip message and images -->
+            <div class="trip-content">
+                <p class="trip-text">{{ t.message }}</p>
+                <div class="trip-images">
+                    {% if t.get_images %}
+                        {% for img in t.get_images %}
+                        <img src="{{ img.image_file.url }}" alt="Trip image" class="trip-img">
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Bottom left: Timestamp -->
+            <small class="timestamp">{{ t.timestamp }}</small>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+<!-- <div id="trip">
+    <strong><p>Trips</p></strong>
+
+    {% if account.get_trips %}
+        {% for t in account.get_trips %}
+        <div>
+            {% if account.get_images%}
+            {%for a in account.get_images%}
+                <img src="{{a.image_file.url}}" alt="{{ account.first }} {{ account.last }}" class="profile-img">
+            {%endfor%}
+            {%endif%}
+            <strong><p>{{account}}</p></strong>
+            <strong id="trip_head"><p>{{t}}:</p></strong>
+            <p class="trip_text">{{ t.message }}</p>
+            
+            <small class="timestamp">{{ t.timestamp }}</small>
+            {% if t.get_images %}
+                {% for img in t.get_images%}
+                    <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}' class="trip_images">
+                {% endfor %}
+            {%endif%}
+        </div>
+        {% endfor %}
+    {% else %}
+        <h2>No Trips Yet</h2>
+    {% endif %}
+</div> -->
+
+
+{%endblock%}

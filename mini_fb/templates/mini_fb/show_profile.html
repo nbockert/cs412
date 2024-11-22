@@ -42,14 +42,14 @@
 
         {% endfor %}
     {%endif%}
-</div>
+    </div>
 <br>
 {% if request.user.is_authenticated and request.user == profile.user %}
 <a href="{% url 'friend_suggestions' %}" id="statuscreate">See Friend Suggestions</a>
 {% endif %}
 
         
-</div>
+
 
 <div id="status">
     <p>Status Messages</p>
