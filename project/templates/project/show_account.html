@@ -1,0 +1,165 @@
+{%extends 'project/base.html'%}
+{%block content%}
+
+
+
+
+
+<div class="account_facts">
+    {%if account.get_images%}
+    {%for img in account.get_images%}
+    <img src="{{img.image_file.url}}" alt="{{ account.first }} {{ account.last }}" class="account-img">
+    {%endfor%}
+    {%endif%}
+    <div class="account-info">
+            {%if request.user.is_authenticated and request.user != account.user and account not in user_friends %}
+
+            <div id="name">
+                <h1 id="name_tag">{{account}}</h1>
+                <a href="{%url 'add_friends' account.pk%}" class="create-trip-btn" id="add">+</a>
+            </div>
+            {%else%}
+                <h1>{{account}}</h1>
+            {%endif%}
+            <span class="icon-text">
+                <img src="/static/home-icon.png" alt="icon" class="icon">
+                <h2>{{ account.city }}</h2>
+            </span>
+            <span class="icon-text">
+                <img src="/static/email-icon.png" alt="icon" class="icon">
+                <h2><a id="email" href="mailto:{{ account.email }}" rel="nofollow">{{ account.email }}</a></h2>
+            </span>
+            {%if request.user.is_authenticated and request.user == account.user%}
+            <a href="{%url 'update_account'%}">Update Account</a>
+            {%endif%}
+
+    </div>
+    {%if request.user.is_authenticated and request.user == account.user%}
+    <div class="nav_links">
+    <a href="{%url 'show_leaderboard'%}" class="link_btn">Leaderboard</a>
+    <a href="{%url 'trip_feed'%}" class="link_btn">Trip Feed</a>
+    <a href="{%url 'my_plans'%}" class="link_btn">My Plans</a>
+</div>
+    {%endif%}
+    
+</div>
+<div class="sect_header">
+    <strong class="sect_text"><h2>{{account.first}}'s Friends</h2></strong>
+    {%if request.user.is_authenticated and request.user == account.user%}
+        <a href="{%url 'friend_suggestions'%}" class="create-trip-btn">+</a>
+    {%endif%}
+
+</div>
+<div class="friends">
+{%if account.get_friends%}
+    {% for friend in account.get_friends %}
+        <a href="{%url 'show_account' friend.pk%}">
+            <div class="profile_container">
+                {%if friend.get_images%}
+                {%for img in friend.get_images%}
+                <img src="{{img.image_file.url}}" class="profile_image">
+                {%endfor%}
+                {%endif%}
+          
+            </div>
+            {{ friend.first }} {{ friend.last }}
+        </a>
+    {% endfor %}
+{%endif%}
+
+
+</div>
+<br>
+<div class="sect_header">
+    <strong class="sect_text"><h2>Trips</h2></strong>
+    {%if request.user.is_authenticated and request.user == account.user%}
+        <a href="{%url 'create_trip'%}" class="create-trip-btn">+</a>
+    {%endif%}
+    </div>
+<div id="trip">
+
+    {% if account.get_trips %}
+        {% for t in account.get_trips %}
+        <div class="trip-box">
+           
+                 <!-- Center top: Trip name -->
+            <h2 class="trip-name">{{ t }}</h2>
+             <!-- Top-left corner: Profile image and name -->
+            <div class="profile-header">
+                {%if account.get_images%}
+                {%for img in account.get_images%}
+                <img src="{{img.image_file.url}}" alt="{{ account.first }} {{ account.last }}" class="profile-img">
+                {%endfor%}
+                {%endif%}
+                
+                <strong>{{ account }}</strong>
+            </div>
+        
+            <!-- Underneath: Trip message and images -->
+            <div class="trip-content">
+                {% if t.get_images %}
+                <p class="trip-text">{{ t.message }}</p>
+                <div class="trip-images">
+                    
+                        {% for img in t.get_images %}
+                        <img src="{{ img.image_file.url }}" alt="Trip image" class="trip-img">
+                        {% endfor %}
+                </div>
+                {%else%}
+                <p>{{ t.message }}</p>
+                {% endif %}
+            </div>
+            <!-- Bottom left: Timestamp -->
+               
+                {% if t.get_comments %}
+                <div class="nocomments">
+                    <h2>Comments</h2>
+                    <a href="{% url 'comment' t.pk %}" class="chatBtn"> <svg height="1.6em" fill="white" xml:space="preserve" viewBox="0 0 1000 1000" y="0px" x="0px" version="1.1">
+                        <path d="M881.1,720.5H434.7L173.3,941V720.5h-54.4C58.8,720.5,10,671.1,10,610.2v-441C10,108.4,58.8,59,118.9,59h762.2C941.2,59,990,108.4,990,169.3v441C990,671.1,941.2,720.5,881.1,720.5L881.1,720.5z M935.6,169.3c0-30.4-24.4-55.2-54.5-55.2H118.9c-30.1,0-54.5,24.7-54.5,55.2v441c0,30.4,24.4,55.1,54.5,55.1h54.4h54.4v110.3l163.3-110.2H500h381.1c30.1,0,54.5-24.7,54.5-55.1V169.3L935.6,169.3z M717.8,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.5,24.7,54.5,55.2C772.2,420.2,747.8,444.8,717.8,444.8L717.8,444.8z M500,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.4,24.7,54.4,55.2C554.4,420.2,530.1,444.8,500,444.8L500,444.8z M282.2,444.8c-30.1,0-54.5-24.7-54.5-55.1c0-30.4,24.4-55.2,54.5-55.2c30.1,0,54.4,24.7,54.4,55.2C336.7,420.2,312.3,444.8,282.2,444.8L282.2,444.8z"></path>
+                        </svg>
+                        <span class="tooltip">Comment</span>
+                        </a>
+                    </div>
+                    <!-- call the get_comments method on the article object -->
+                    <!-- {{article.get_comments}} -->
+                    {% for c in t.get_comments %}
+                    <div class="comment">
+                        <strong>by {{c.account}} at {{c.published}}</strong>
+                        <p>
+                            {{c.text}}
+                        </p>
+                    </div>
+                
+                    {% endfor %}
+                {% else %}
+                <div class="nocomments">
+                    <h2>No Comments</h2>
+                    <a href="{% url 'comment' t.pk %}" class="chatBtn"> <svg height="1.6em" fill="white" xml:space="preserve" viewBox="0 0 1000 1000" y="0px" x="0px" version="1.1">
+                        <path d="M881.1,720.5H434.7L173.3,941V720.5h-54.4C58.8,720.5,10,671.1,10,610.2v-441C10,108.4,58.8,59,118.9,59h762.2C941.2,59,990,108.4,990,169.3v441C990,671.1,941.2,720.5,881.1,720.5L881.1,720.5z M935.6,169.3c0-30.4-24.4-55.2-54.5-55.2H118.9c-30.1,0-54.5,24.7-54.5,55.2v441c0,30.4,24.4,55.1,54.5,55.1h54.4h54.4v110.3l163.3-110.2H500h381.1c30.1,0,54.5-24.7,54.5-55.1V169.3L935.6,169.3z M717.8,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.5,24.7,54.5,55.2C772.2,420.2,747.8,444.8,717.8,444.8L717.8,444.8z M500,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.4,24.7,54.4,55.2C554.4,420.2,530.1,444.8,500,444.8L500,444.8z M282.2,444.8c-30.1,0-54.5-24.7-54.5-55.1c0-30.4,24.4-55.2,54.5-55.2c30.1,0,54.4,24.7,54.4,55.2C336.7,420.2,312.3,444.8,282.2,444.8L282.2,444.8z"></path>
+                        </svg>
+                        <span class="tooltip">Comment</span>
+                        </a>
+                </div>
+                {% endif %}
+         
+
+                
+            
+            <small class="timestamp">{{ t.timestamp }}</small>
+            {% if request.user.is_authenticated and request.user == account.user %}
+            <div class="links">
+            <a href="{% url 'update_trip' t.pk %}">Update Trip</a>
+            <a href="{% url 'delete_trip' t.pk %}" class="button"><svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg></a>
+            </div>
+            {% endif %}
+
+
+        </div>
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+
+
+{%endblock%}

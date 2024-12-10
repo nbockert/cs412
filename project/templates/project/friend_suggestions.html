@@ -1,0 +1,32 @@
+<!-- project/templates/project/friend_suggestions.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <a href="{% url 'show_account' account.pk %}">Back to Account</a>
+    <h1>Friend Suggestions for {{ account.first }} {{ account.last }}</h1>
+
+    <div class="friends">
+        {% for friend in friend_suggestions %}
+            <a href="{%url 'show_account' friend.pk%}">
+                <div class="profile_container">
+                    {%if friend.get_images%}
+                    {%for img in friend.get_images%}
+                    <img src="{{img.image_file.url}}" class="profile_image">
+                    {%endfor%}
+                    {%endif%}
+                    {{ friend.first }} {{ friend.last }}
+                    <br>
+                    <a href="{% url 'add_friends' friend.pk %}">Add Friend</a>
+                </div>
+
+                
+            </a>
+            
+
+        {% empty %}
+            <li>No friend suggestions available.</li>
+        {% endfor %}
+    </div>
+    
+
+{% endblock %}

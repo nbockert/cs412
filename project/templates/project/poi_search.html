@@ -1,0 +1,131 @@
+{% extends 'project/base.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POI Search</title>
+    <style>
+        .search-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result-box {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            text-align: center;
+        }
+        .result-box:hover {
+            background-color: #e0e0e0;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container select {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+        }
+        .submit-btn {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #387478;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #4aa7ae;
+        }
+    </style>
+</head>
+
+<body>
+<div id="map-data"
+    data-planner="{{ planner }}">
+</div>
+<a href="{%url 'show_map' planner.pk%}">Back to my Planner</a>
+<h1>Search for Places of Interest</h1>
+
+<!-- Category Selection -->
+<form class="form-container" method="post" action="{% url 'create_poi' planner.pk %}">
+    {% csrf_token %}
+    <label for="category">Select a category:</label>
+    <select id="category" name="category">
+        <option value="accommodation">Accommodation</option>
+        <option value="airport">Airport</option>
+        <option value="commercial">Commercial</option>
+        <option value="catering">Catering</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="natural">Natural</option>
+        <option value="rental">Rental</option>
+        <option value="tourism">Tourism</option>
+        <option value="adult">Adult</option>
+        <option value="production">Production</option>
+    </select>
+
+    <input type="hidden" id="place_name" name="place_name">
+    <input type="hidden" id="address" name="address">
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
+
+    <!-- Display Results -->
+    <div id="result-box"></div>
+
+    <button type="submit" class="submit-btn">Add Place</button>
+</form>
+
+<script>
+    const mapData = document.getElementById('map-data');
+    const planner = mapData.getAttribute('data-planner');
+    const lat = parseFloat("{{ planner.latitude }}");
+    const long = parseFloat("{{ planner.longitude }}");
+    const GEOAPIFY_API_KEY = "{{ planner.geoapify_api_key }}";
+
+    document.getElementById('category').addEventListener('change', function() {
+        const category = this.value;
+        fetchPlaces(category);
+    });
+
+    // Fetch places from Geoapify
+    function fetchPlaces(category) {
+        const apiUrl = `https://api.geoapify.com/v2/places?categories=${category}&bias=proximity:${long},${lat}&apiKey=${GEOAPIFY_API_KEY}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const results = data.features;
+                const poiResultsContainer = document.getElementById('result-box');
+                poiResultsContainer.innerHTML = ''; // Clear previous results
+
+                results.forEach(result => {
+                    const poiElement = document.createElement('button');
+                    poiElement.classList.add('result-box');
+                    poiElement.textContent = result.properties.name || 'Unnamed Place';
+
+                    poiElement.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Set form hidden fields
+                        document.getElementById('place_name').value = result.properties.name;
+                        document.getElementById('address').value = result.properties.formatted;
+                        document.getElementById('latitude').value = result.geometry.coordinates[1];
+                        document.getElementById('longitude').value = result.geometry.coordinates[0];
+                    });
+
+                    poiResultsContainer.appendChild(poiElement);
+                });
+            })
+            .catch(error => console.error('Error fetching data from Geoapify:', error));
+    }
+</script>
+</body>
+{% endblock %}

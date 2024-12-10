@@ -1,0 +1,24 @@
+<!--projects/templates/projects/show_all_plans.html-->
+{%extends 'project/base.html'%}
+{%block content%}
+<h1>My Plans</h1>
+<a href="{%url 'show_account' account.pk%}">Back to Account</a>
+{%if account.get_plans%}
+{%for plan in account.get_plans%}
+<div class="trip-box">
+    <p>{{plan}}</p>
+    
+    <a href="{% url 'show_map' plan.pk %}">
+        <h2>{{plan.planner_city}},{{plan.planner_country}}</h2>
+        <p>from {{plan.date_start}}-{{plan.date_end}}</p>
+    </a>
+    <a href="{%url 'delete_plan' plan.pk%}">Delete Plan</a>
+
+</div>
+<br>
+{%endfor%}
+{%else%}
+<h2>No Plans Yet</h2>
+{%endif%}
+<a href="{%url 'create_planner'%}">Create a Planner</a>
+{%endblock%}

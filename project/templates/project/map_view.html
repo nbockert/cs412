@@ -1,0 +1,160 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map for {{ planner.planner_city }}</title>
+
+    <!-- MapTiler/Leaflet CSS -->
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css' />
+    <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-wrap {
+            margin: 0 auto;
+            width: 67%;
+            height: 67%;
+        }
+
+        .poi-button {
+            padding: 10px;
+            margin: 5px;
+            background-color: #6A9C89;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .poi-button:hover {
+            background-color: #C4DAD2;
+        }
+        .poi-buttons{
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <a href="{%url 'show_account' planner.account.pk%}">Back to my Account</a>
+    <h1>Map of {{ planner.planner_city }}</h1>
+    <div class="map-wrap">
+        <div id="map" class="map"></div>
+    </div>
+
+    <!-- Loop through POIs and create buttons for each -->
+    <div class="sect_header">
+        <h2>Places of Interest</h2>
+        <a href="{% url 'poi_search' planner.pk %}" class="create-trip-btn">+</a>
+    </div>
+    <div class="poi-buttons">
+        {% for poi in planner.get_poi %}
+            <button class="poi-button" onclick="addMarker('{{ poi.latitude }}', '{{ poi.longitude }}', '{{ poi.place_name }}')">
+                {{ poi.place_name }}
+            </button>
+        {% endfor %}
+    </div>
+
+   
+
+    <div id="map-data" data-planner="{{ planner }}"></div>
+
+    {%if planner.get_poi%}
+    <div id="category_counts" data-category="{{planner.category_counts }}">
+        <canvas id="poiChart" width="400" height="400"></canvas>
+    </div>
+    {%endif%}
+
+    <script>
+        // Get context variables
+        const mapData = document.getElementById('map-data');
+        const planner = mapData.getAttribute('data-planner');
+        const lat = parseFloat("{{ planner.latitude }}");
+        const long = parseFloat("{{ planner.longitude }}");
+        const maptiler_api_key = "{{ planner.maptiler_api_key }}";
+
+        function initMap(lat, long) {
+            const mapContainer = document.getElementById('map');
+            let map;
+
+            map = new maplibregl.Map({
+                container: mapContainer,
+                style: `https://api.maptiler.com/maps/basic-v2/style.json?key=${maptiler_api_key}`,
+                center: [long, lat],
+                zoom: 12
+            });
+
+            map.on('load', function() {
+                console.log('Map Loaded');
+                map.flyTo({
+                    center: [long, lat],
+                    essential: true
+                });
+            });
+
+            return map;
+        }
+        const mapInstance = initMap(lat, long);
+
+        // Function to add a marker on the map when a POI button is clicked
+        function addMarker(latitude,longitude,poi_name) {
+            // Add marker to the map
+             const marker = new maplibregl.Marker({
+                color: "#6A9C89",
+                draggable: true
+            }).setLngLat([longitude, latitude])
+                .setPopup(new maplibregl.Popup().setHTML(`<h3>${poi_name}</h3>`))  // Popup with the POI name
+                .addTo(mapInstance);
+
+            //Optionally, center map on the selected POI
+            mapInstance.flyTo({
+                center: [longitude, latitude],
+                essential: true,
+                zoom: 14  // You can adjust the zoom level if needed
+            });
+        }
+        // Retrieve the category counts JSON
+        function createCategoryChart(categoryCounts) {
+        const categories = Object.keys(categoryCounts);
+        const counts = Object.values(categoryCounts);
+
+        const ctx = document.getElementById('poiChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: categories,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0'], // Example colors
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                }
+            }
+        });
+    }
+
+    // Check if category_counts div exists before creating the chart
+    const categoryCountsElement = document.getElementById('category_counts');
+    
+    if (categoryCountsElement) {
+        // const categoryCounts = JSON.parse(categoryCountsElement.dataset.categoryCounts);
+        const category_counts = categoryCountsElement.getAttribute('data-category');
+        createCategoryChart(category_counts);
+    }
+    </script>
+
+</body>
+{% endblock %}

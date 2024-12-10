@@ -1,0 +1,61 @@
+<!-- trip_post.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+<a href="{% url 'trip_feed'%}"><h4>Back to Trip Feed</h4></a>
+<div class="trip-post">
+    
+    
+
+    <!-- Trip Images -->
+    <div class="trip-box">
+        <!-- Trip Name -->
+        <h1>{{ trip.get_full_trip }}</h1>
+        {% for image in trip.get_images %}
+            <img src="{{ image.image_file.url }}" alt="Trip Image" class="trip-image">
+        {% endfor %}
+    
+
+    <!-- Poster Information -->
+    <div class="poster-info">
+        
+        {% if trip.account.get_images %}
+        {%for img in trip.account.get_images%}
+            <img src="{{ img.image_file.url }}" alt="Profile Picture" class="profile-img">
+        {%endfor%}
+        {% endif %}
+        <span class="poster-name">{{ trip.account.first }} {{ trip.account.last }}</span>
+    </div>
+
+    <!-- Trip Message and Timestamp -->
+    <div class="trip-message">
+        <p>{{ trip.message }}</p>
+        <small>Posted on: {{ trip.timestamp }}</small>
+    </div>
+</div>
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <h3>Comments</h3>
+        {% for comment in trip.get_comments %}
+            <div class="comment">
+                {% if comment.account.get_images %}
+                {%for img in comment.account.get_images%}
+                <img src="{{img.image_file.url }}" alt="Profile Picture" class="profile-img">
+                {%endfor%}
+            {% endif %}
+            <!-- <span class="poster-name">{{ comment.account.first }} {{ comment.account.last }}</span> -->
+                <strong>{{ comment.account.first }} {{ comment.account.last }}:</strong>
+                <p>{{ comment.text }}</p>
+                <small>{{ comment.published }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Add Comment Form -->
+    <div class="add-comment">
+        <a href="{% url 'comment' trip.pk %}">
+            <h4>Add a Comment</h4></a>
+    </div>
+</div>
+{% endblock %}

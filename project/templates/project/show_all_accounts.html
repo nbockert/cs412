@@ -1,0 +1,39 @@
+
+<!-- templates/show_all_accounts.html 
+ nbockert@bu.edu
+ Shows all the profiles as a table -->
+ {% extends 'project/base.html' %}
+
+ {% block content %}
+ <h1 class="header">Showing all Accounts</h1>
+
+ <main>
+     <div>
+         <table border="1" id="account_tab">
+             <thead>
+                 <tr>
+                     <th>Name</th>
+                     <th>City</th>
+                     <th>Email</th>
+                     <th>Profile Image</th>
+                 </tr>
+             </thead>
+             <tbody>
+                {% for a in accounts %}
+                 <tr>
+                    <td><a href="{% url 'show_account' a.pk %}">{{a.first}} {{a.last}}</a></td>
+                     <td>{{a.city}}</td>
+                     <td>{{a.email}}</td>
+                     {%if a.get_images%}
+                     {%for img in a.get_images%}
+                     <td><a href="{% url 'show_account' a.pk %}"><img src="{{img.image_file.url}}" alt="{{ a.first }} {{ a.last }}" class="images"></a></td>
+                    {%endfor%}
+                    {%endif%}
+                 </tr>
+                 {% endfor %}
+             </tbody>
+         </table>
+     </div>
+    </main>
+
+ {% endblock %}

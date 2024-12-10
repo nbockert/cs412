@@ -1,0 +1,104 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+<style>
+  /* Center the search bar */
+  .search-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+  }
+  
+  .search-container input[type="text"] {
+      width: 40%;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+  }
+  
+  .search-container button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+  }
+  
+  .search-container button:hover {
+      background-color: #0056b3;
+  }
+
+  /* Results container */
+  .results-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+  }
+
+  .result-card {
+      width: 60%;
+      background-color: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 10px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: left;
+  }
+
+  .result-card a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+  }
+
+  .result-card a:hover {
+      text-decoration: underline;
+  }
+
+  .no-results {
+      font-size: 18px;
+      color: #888;
+      margin-top: 20px;
+  }
+</style>
+
+<div class="search-container">
+    <form method="GET" action="{% url 'search' %}">
+        <input type="text" name="q" placeholder="Search for accounts or trips" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div class="results-container">
+    {% if results.accounts or results.trips %}
+        <h2>Accounts</h2>
+        {% for account in results.accounts %}
+        <div class="result-card">
+            <a href="{% url 'show_account' account.pk %}">
+                {%for img in account.get_images%}
+                <img src="{{img.image_file.url}}" class="profile-img">
+                {%endfor%}
+                {{ account.name }} ({{ account.user.username }})
+            </a>
+        </div>
+        {% empty %}
+        <p class="no-results">No accounts found.</p>
+        {% endfor %}
+
+        <h2>Trips</h2>
+        {% for trip in results.trips %}
+        <div class="result-card">
+            <a href="{% url 'show_trip' trip.pk %}">{{trip.account}}'s trip to {{ trip.location }}</a>
+        </div>
+        {% empty %}
+        <p class="no-results">No trips found.</p>
+        {% endfor %}
+    {% else %}
+        <p class="no-results">No results found. Try another search.</p>
+    {% endif %}
+</div>
+{% endblock %}
