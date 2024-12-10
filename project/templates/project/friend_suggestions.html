@@ -2,7 +2,7 @@
 {% extends 'project/base.html' %}
 
 {% block content %}
-    <a href="{% url 'show_account' account.pk %}">Back to Account</a>
+    <a href="{% url 'show_account' account.pk %}" class="link_button">Back to Account</a>
     <h1>Friend Suggestions for {{ account.first }} {{ account.last }}</h1>
 
     <div class="friends">
@@ -24,7 +24,7 @@
             
 
         {% empty %}
-            <li>No friend suggestions available.</li>
+            <p>No friend suggestions available.</p>
         {% endfor %}
     </div>
     

@@ -3,7 +3,7 @@
 
 {% block content %}
 <div>
-    <a href="{%url 'show_account' user_score.account.pk%}">Back to my Account</a>
+    <a href="{%url 'show_account' user_score.account.pk%}" class="link_button">Back to my Account</a>
 </div>
 <h1>Leaderboard</h1>
 <p class="myscore">Your Rank: {{ user_rank }}</p>

@@ -43,7 +43,7 @@
     </style>
 </head>
 <body>
-    <a href="{%url 'show_account' planner.account.pk%}">Back to my Account</a>
+    <a href="{%url 'my_plans'%}" class="link_button">Back to my Plans</a>
     <h1>Map of {{ planner.planner_city }}</h1>
     <div class="map-wrap">
         <div id="map" class="map"></div>
@@ -61,8 +61,9 @@
             </button>
         {% endfor %}
     </div>
-
-   
+<div class="center">
+    <a href="{%url 'graph_view' planner.pk %}"  class="link_button">Interest Analytics</a>
+</div>
 
     <div id="map-data" data-planner="{{ planner }}"></div>
 
@@ -121,39 +122,7 @@
             });
         }
         // Retrieve the category counts JSON
-        function createCategoryChart(categoryCounts) {
-        const categories = Object.keys(categoryCounts);
-        const counts = Object.values(categoryCounts);
 
-        const ctx = document.getElementById('poiChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: categories,
-                datasets: [{
-                    data: counts,
-                    backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0'], // Example colors
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                }
-            }
-        });
-    }
-
-    // Check if category_counts div exists before creating the chart
-    const categoryCountsElement = document.getElementById('category_counts');
-    
-    if (categoryCountsElement) {
-        // const categoryCounts = JSON.parse(categoryCountsElement.dataset.categoryCounts);
-        const category_counts = categoryCountsElement.getAttribute('data-category');
-        createCategoryChart(category_counts);
-    }
     </script>
 
 </body>

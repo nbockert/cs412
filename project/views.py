@@ -12,13 +12,13 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 import requests
 import os
-
+from plotly.graph_objs import Pie, Figure
 from django.http import HttpResponseRedirect, JsonResponse
 
 
 # Create your views here.
 class ShowAllAccountsView(ListView):
-    '''Create a subclass of ListView to display all fb accounts.'''
+    '''Create a subclass of ListView to display all accounts.'''
     model = Account # retrieve objects of type Account from the database
     template_name = 'project/show_all_accounts.html'
     context_object_name = 'accounts' # how to find the data in the template file
@@ -27,8 +27,15 @@ class ShowAccountPageView(DetailView):
     model = Account
     template_name = 'project/show_account.html'
     context_object_name = 'account'
+    def get_context_data(self, **kwargs):
+        #pass context about user friends
+        context = super().get_context_data(**kwargs)
+        user_account = Account.objects.get(user=self.request.user)
+        context['user_friends'] = user_account.get_friends()
+        return context
 
-class CreateAccountView(CreateView):
+#added loginrequiredmixin
+class CreateAccountView(CreateView,LoginRequiredMixin):
     '''Create a subclass of CreateView to handle account creation.'''
     model = Account
     form_class = CreateAccountForm
@@ -41,9 +48,11 @@ class CreateAccountView(CreateView):
         context = super().get_context_data(**kwargs)
         if 'user_creation_form' not in context:
             context['user_creation_form'] = UserCreationForm()
+        
         # if 'image_form' not in context:
         #     context['image_form'] = AccountImageForm() 
         return context
+
     def form_valid(self, form):
         '''Handle form submission and user creation.'''
         # Reconstruct UserCreationForm from POST data
@@ -58,6 +67,8 @@ class CreateAccountView(CreateView):
         form.instance.account =account
         print(account)
         account.save()
+        score = Score.objects.create(account=account)
+        
         #need to create a new form for uploading the images
         # image_form = AccountImageForm(self.request.POST, self.request.FILES)
         new_image = self.request.FILES.getlist('files')
@@ -101,6 +112,7 @@ class CreateTripView(LoginRequiredMixin,CreateView):
         sm = form.save(commit=False)
         sm.account = account
         sm.save()
+        
         # read the file from the form:
         files = self.request.FILES.getlist('files')
         for f in files:
@@ -234,6 +246,7 @@ class ShowFriendSuggestionsView(DetailView):
         return context
     def get_object(self):
         return get_object_or_404(Account, user=self.request.user)
+
 
 class LeaderboardView(LoginRequiredMixin, ListView):
     model = Score
@@ -400,6 +413,7 @@ class CreatePlannerView(CreateView):
         # Associate the planner with the logged-in user's account
         account = Account.objects.get(user=self.request.user)
         form.instance.account = account
+    
 
         # Get city and country from the form data
         city = form.cleaned_data['planner_city']
@@ -407,6 +421,7 @@ class CreatePlannerView(CreateView):
 
         # Fetch coordinates using Geoapify API
         api_key = GEOAPIFY_API_KEY
+        print(api_key)
         geocode_url = f"https://api.geoapify.com/v1/geocode/search?city={city}&country={country}&apiKey={api_key}"
         response = requests.get(geocode_url)
 
@@ -501,3 +516,45 @@ class CreatePOIView(CreateView):
         return HttpResponseRedirect(reverse('show_map', kwargs={'pk': planner.pk}))
 
 
+class GraphsView(LoginRequiredMixin, ListView):
+    """View to display a pie chart of a user's Places of Interest categories."""
+    template_name = 'project/category_graph_view.html'
+    model = Planner
+    context_object_name = 'graph'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Retrieve the planner object from the URL
+        planner = get_object_or_404(Planner, pk=self.kwargs['pk'])
+        context['planner'] = planner
+
+        # Get category counts from the planner's `category_counts` method
+        category_counts = planner.category_counts()
+
+        # Prepare data for the pie chart
+        categories = list(category_counts.keys())
+        counts = list(category_counts.values())
+
+        # Create the pie chart using Plotly
+        colors = ['#16423C', '#6A9C89', '#C4DAD2', '#557C56', '#387478']
+        
+        pie_chart = Figure(data=[Pie(labels=categories, values=counts,marker=dict(colors=colors),textinfo='label+percent',)])
+        pie_chart.update_layout(
+
+        margin=dict(l=20, r=20, t=40, b=20),  # Adjust margins for better fit
+        height=500,  # Set chart height
+        font=dict(
+            family="Raleway, sans-serif",
+            size=14,
+            color="#333"
+        ),
+        paper_bgcolor="#f9f9f9",  # Background color of the chart
+        plot_bgcolor="#ffffff",  # Background of the plot area
+    )
+
+        # Convert the Plotly chart to HTML
+        context['chart'] = pie_chart.to_html(full_html=False)
+
+        return context
+    

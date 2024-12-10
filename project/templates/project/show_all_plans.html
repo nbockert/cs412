@@ -1,14 +1,15 @@
 <!--projects/templates/projects/show_all_plans.html-->
 {%extends 'project/base.html'%}
 {%block content%}
+<a href="{%url 'show_account' account.pk%}" class="link_button">Back to Account</a>
 <h1>My Plans</h1>
-<a href="{%url 'show_account' account.pk%}">Back to Account</a>
+
 {%if account.get_plans%}
 {%for plan in account.get_plans%}
 <div class="trip-box">
     <p>{{plan}}</p>
     
-    <a href="{% url 'show_map' plan.pk %}">
+    <a href="{% url 'show_map' plan.pk %}" class="trip-link">
         <h2>{{plan.planner_city}},{{plan.planner_country}}</h2>
         <p>from {{plan.date_start}}-{{plan.date_end}}</p>
     </a>
@@ -20,5 +21,5 @@
 {%else%}
 <h2>No Plans Yet</h2>
 {%endif%}
-<a href="{%url 'create_planner'%}">Create a Planner</a>
+<a href="{%url 'create_planner'%}" class ="link_button">Create a Planner</a>
 {%endblock%}

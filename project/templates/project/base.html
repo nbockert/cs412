@@ -14,18 +14,20 @@
         <nav>
             <div class="navbar">
                 <div class="navbar-left">
-                    <h1>Wander</h1>
+                    <h1 class="logo">Wander</h1>
                 </div>
                 <div class="navbar-center">
                     {% if request.user.is_authenticated %}
-                        Logged in user: {{ request.user }}.
+                        Welcome {{ request.user }}!
                     {% endif %}
-                    <a href="{%url 'search'%}">Search</a>
+                    <!-- <a href="{%url 'search'%}">Search</a> -->
                 </div>
                 <div class="navbar-right">
                     <ul>
+                        
                         <li><a href="{% url 'show_all_accounts' %}">Show All Accounts</a></li>
                         {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'show_account' request.user.pk%}">My Account</a></li>
                             <li><form action="{% url 'logout' %}" method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="Btn">

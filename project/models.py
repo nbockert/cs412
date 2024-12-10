@@ -7,21 +7,16 @@ from geopy.geocoders import Nominatim
 import pycountry
 from collections import Counter
 COUNTRY_CHOICES = [(country.alpha_2, country.name) for country in pycountry.countries]
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
-#NEED TO CREATE A MODEL FOR COLLABORATORS AND RETHINK PLANNER MODEL
-#planner is a type of trip - but you can have many planned trips so this is a many to many relationship 
-#plan trip vs post trip - attribute when you create trip? 
-#add collaborators to trip model and make an organizer so it is many to one
-#Should Plan just be a view? - no plan should be its own form and it should not be related to trips it should be like trips
-# Ok so then instead of itinerary you should just incorporate an api that allows you to search and click buttons in things you would be interested in and then write an accessor to get events
-# with collaborators what would the attributes be? 
-# many to many models need an extra model to define a relationship
 class Account(models.Model):
     '''Data attributes of account'''
     email = models.TextField(blank=False)
     first = models.TextField(blank=False)
     last = models.TextField(blank=False)
+    #collect address for geolocating 
     street_address = models.TextField(blank=False)
     city = models.TextField(blank=False)
     country = models.CharField(
@@ -97,6 +92,13 @@ class Account(models.Model):
     def get_plans(self):
         plans = Planner.objects.filter(account=self)
         return plans
+    def get_score(self):
+        score = Score.objects.get(account=self)
+        return score
+
+
+
+
 
 
 
@@ -222,7 +224,7 @@ class Collaborators_Plan(models.Model):
     
 class Score(models.Model):
     account = models.ForeignKey("Account",on_delete=models.CASCADE)
-    score = models.FloatField(default=0.0)
+    
 
     def get_friends(self):
         """Retrieve the account's friends."""

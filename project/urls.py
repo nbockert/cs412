@@ -28,6 +28,7 @@ urlpatterns = [
     path('account/my_plans',views.MyPlansView.as_view(),name='my_plans'),
     path('planner/<int:pk>/poi_search/', views.POICategoryView.as_view(), name='poi_search'),
     path('planner/<int:pk>/poi_results/', views.CreatePOIView.as_view(), name='create_poi'), 
+    path('planner/<int:pk>/category_graph/', views.GraphsView.as_view(), name='graph_view'),
     path('login/', auth_views.LoginView.as_view(template_name='project/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='project/logged_out.html',), name='logout'), ## NEW
 ]

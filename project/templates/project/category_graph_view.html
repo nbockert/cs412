@@ -1,0 +1,12 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+<a href="{%url 'show_map' planner.pk%}" class="link_button">Back to Plan</a>
+<div class="graph-container">
+    <h1>Intrest Analytics for {{ planner }}</h1>
+    <div id="chart-container">
+        {{ chart|safe }}
+    </div>
+</div>
+
+{% endblock %}

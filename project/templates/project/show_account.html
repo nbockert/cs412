@@ -12,7 +12,7 @@
     {%endfor%}
     {%endif%}
     <div class="account-info">
-            {%if request.user.is_authenticated and request.user != account.user and account not in user_friends %}
+            {%if request.user.is_authenticated and request.user != account.user and account not in user_friends and account not in user_friends%}
 
             <div id="name">
                 <h1 id="name_tag">{{account}}</h1>
