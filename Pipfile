@@ -5,11 +5,10 @@ name = "pypi"
 
 [packages]
 django = "*"
-
+pandas = "*"
 geopy = "*"
 pycountry = "*"
 plotly = "*"
-pandas = "*"
 requests = "*"
 pillow = "*"
 gunicorn = "*"
