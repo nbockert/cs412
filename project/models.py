@@ -10,8 +10,7 @@ from geopy.geocoders import Nominatim
 import pycountry
 from collections import Counter
 COUNTRY_CHOICES = [(country.alpha_2, country.name) for country in pycountry.countries]
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 
 # Create your models here.
 class Account(models.Model):

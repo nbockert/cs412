@@ -4,7 +4,7 @@
 {% extends 'project/base.html' %}
 
 {% block content %}
-<a href="{% url 'trip_feed'%}"><h4>Back to Trip Feed</h4></a>
+<a href="{% url 'trip_feed'%}" class="link_button"><h4>Back to Trip Feed</h4></a>
 <div class="trip-post">
     
     
@@ -12,7 +12,7 @@
     <!-- Trip Images -->
     <div class="trip-box">
         <!-- Trip Name -->
-        <h1>{{ trip.get_full_trip }}</h1>
+        <h1 class="post_header">{{ trip.get_full_trip }}</h1>
         {% for image in trip.get_images %}
             <img src="{{ image.image_file.url }}" alt="Trip Image" class="trip-image">
         {% endfor %}
@@ -38,7 +38,7 @@
 
     <!-- Comments Section -->
     <div class="comments-section">
-        <h3>Comments</h3>
+        <h3 id="comment-head">Comments</h3>
         {% for comment in trip.get_comments %}
             <div class="comment">
                 {% if comment.account.get_images %}
@@ -57,7 +57,7 @@
     <!-- Add Comment Form -->
     <div class="add-comment">
         <a href="{% url 'comment' trip.pk %}">
-            <h4>Add a Comment</h4></a>
+            <h4 class="chatBtn">Add a Comment</h4></a>
     </div>
 </div>
 {% endblock %}

@@ -51,6 +51,11 @@ Display Planner analytics and map of the city as well as POIs-->
     <div class="map-wrap">
         <div id="map" class="map"></div>
     </div>
+    <div class="planner-dates">
+        <h3>Travel Dates</h3>
+        <p><strong>Start Date:</strong> {{ planner.date_start }}</p>
+        <p><strong>End Date:</strong> {{ planner.date_end }}</p>
+    </div>
 
     <!-- Loop through POIs and create buttons for each -->
     <div class="sect_header">
