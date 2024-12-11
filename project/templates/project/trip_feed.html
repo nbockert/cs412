@@ -2,7 +2,7 @@
 {% extends "project/base.html" %}
 
 {% block content %}
-<a href="{% url 'show_account' pk=account.pk %}"><h4>Back to my Account</h4></a>
+<a href="{% url 'show_account' pk=account.pk %}" class="link_button"><h4>Back to my Account</h4></a>
 <h1>{{ account.first }}'s Trip Feed</h1>
 
 

@@ -577,7 +577,7 @@ h1{
     gap: 20px; /* Add spacing between the links */
     justify-content: left;
     align-items: left;
-    margin-left: 300px;
+    margin-left: 200px;
 }
 
 .graph-container {
