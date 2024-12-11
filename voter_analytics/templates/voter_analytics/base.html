@@ -1,0 +1,31 @@
+<!-- voter_analytics/templates/voter_analytics/base.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voter Analytics</title>
+    <style>
+        .pagination { margin: 20px 0; }
+        .pagination a { margin: 0 10px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; border: 1px solid #ddd; }
+        form { margin: 20px 0; }
+        .filter-form { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        
+    </style>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <li><a href="{% url 'voters' %}">Voter List</a></li>
+            <li><a href="{%url 'graphs'%}">Graphs</a></li>
+        </nav>
+
+    </header>
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
