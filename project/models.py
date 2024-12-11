@@ -224,7 +224,7 @@ class Collaborators_Plan(models.Model):
     
 class Score(models.Model):
     account = models.ForeignKey("Account",on_delete=models.CASCADE)
-    
+    score = models.FloatField(default=0.0)
 
     def get_friends(self):
         """Retrieve the account's friends."""
