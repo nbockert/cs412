@@ -1,4 +1,4 @@
-# projects/urls.py
+# project/urls.py
 #nbockert@bu.edu
 #routes URLS to the show all view 
 from django.urls import path

@@ -1,3 +1,6 @@
+# project/models.py
+#nbockert@bu.edu
+#models that define application
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse

@@ -1,3 +1,6 @@
+# project/admin.py
+#nbockert@bu.edu
+#register models on django admin
 from django.contrib import admin
 
 # Register your models here.

@@ -1,3 +1,6 @@
+# project/forms.py
+#nbockert@bu.edu
+#defines forms to collect information from users 
 from django import forms
 from .models import *
 
@@ -41,7 +44,7 @@ class CreateCommentForm(forms.ModelForm):
         fields = ['text'] # which fields to include in the form]
 
 class PlannerForm(forms.ModelForm):
-
+    '''Gets input from the user about trip plans'''
     class Meta:
         model = Planner
         fields = ['planner_city', 'planner_country', 'date_start', 'date_end', 'budget']
