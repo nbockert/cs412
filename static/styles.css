@@ -1,0 +1,354 @@
+body{
+    background-color: #c9ecf7;
+    color: #164863;
+    font-family:'Courier New', Courier, monospace;
+}
+.navbar {
+    background-color: #164863;
+    overflow: hidden;
+    color:aliceblue
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul li {
+    float: right;
+}
+
+.navbar ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+.navbar ul li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.images {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: auto;
+}
+
+.showall {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    gap: 10px; /* Optional: Adds space between images */
+}
+
+.showall img {
+    width: 400px; /* Adjust the size of the images */
+    height: auto; /* Keeps the image aspect ratio */
+}
+
+
+
+
+/* a{
+    color: #164863;
+    font-size: 20px;
+} */
+h1{
+    font-size: 40px;
+    text-align: center;
+    color: #164863;
+
+}
+
+p{
+    font-size: 30px;
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+.hours{
+    text-align: center;
+}
+
+table{
+    /* color: aliceblue;
+    background: #164863; */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+
+#name{
+    text-align: left;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column; /* Stack the icons vertically */
+    text-align: left;   
+    /* Align items (image and info) vertically */
+    justify-content: center;     /* Ensure the text is aligned to the left */
+    margin-left: 10px;
+}
+
+.icon-text {
+    display: inline-flex;
+    align-items: center;  /* Align icon and text vertically */
+    margin-bottom: 10px;  /* Space between city and email */
+}
+
+.icon {
+    width: 30px;   /* Adjust the icon size */
+    height: auto;
+    margin-right: 8px;  /* Space between the icon and the text */
+}
+/* .status{
+    text-align: center;
+    align-items: center;
+
+} */
+
+#status div{
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: flex-start; 
+    width: 80%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0 auto 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.profile-img {
+    display: inline-flex;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Same as width for a perfect circle */
+    border-radius: 50%; /* Makes the image a circle */
+    margin-right: 10px; /* Space between the image and the name */
+    object-fit: cover; /* Ensures the image covers the entire area without stretching */
+    align-items: left;
+}
+
+
+#time{
+    text-align: left;
+}
+#status_title{
+    text-align: center;
+}
+#statuscreate{
+    display: block;
+    font-size: 25px;
+    margin-left:40px;
+    text-align: center;
+}
+.profile_container {
+    width: 150px;
+    height: auto;
+    overflow: hidden;
+    border: 4px solid #fff;
+    background-color: #fff;
+    border-radius: 8px;
+    
+}
+
+.profile_image {
+    width: 100%; /* Make the image take the full width of the container */
+    height: 150px; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image covers the container */
+}
+#profile_img{
+    /* margin-left: auto;
+    margin-right: auto; */
+    width: 400px;
+    height: auto;
+    border: 10px solid #164863;
+}
+#myfriends{
+    display: block;
+    font-size: 25px;
+    text-align: center;
+}
+.friends{
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
+}
+.profile_facts {
+    margin-top:30px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
+}
+.status_images{
+    width: 400px;
+    height: auto;
+    display: flex;
+    margin-left: auto;
+}
+
+.status_text{
+    display: flex;
+    text-align: left;
+}
+.timestamp {
+    display: flex;
+    text-align: left;
+    align-self: flex-end; /* Align the timestamp to the bottom */
+    margin-top: auto; /* Push it to the bottom of the container */
+    font-size: 0.8em; /* Optional: Make the timestamp smaller */
+    color: gray; /* Optional: Change color for better visibility */
+}
+/* .status_header div{
+    flex-direction: column; 
+    justify-content: left;
+    text-align: left;
+    width: 20%;
+} */
+ .links{
+    align-items: center;
+    text-align: center;
+ }
+ 
+
+
+
+/* CSS */
+.button-29 {
+  font-size: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #51abdc 0, #164863 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-29:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.button-29:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-29:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
+#logout{
+    text-align: center;
+    align-items: center;
+    margin-left: 668px;
+}
+.form{
+    text-align: center;
+    align-items: center;
+}
+#center{
+    text-align: center;
+}
+
+  /* General styling for the form */
+  .filter-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+      font-family: Arial, sans-serif;
+  }
+
+  /* Style individual labels and inputs */
+  .filter-form label {
+      font-weight: bold;
+      margin-right: 5px;
+      display: flex;
+      align-items: center;
+  }
+
+  /* Ensure all select and input elements have the same size */
+  .filter-form select,
+  .filter-form input[type="checkbox"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+
+  /* Style the fieldset and legend */
+  fieldset {
+      grid-column: span 2;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+  }
+
+  legend {
+      font-weight: bold;
+      font-size: 1.1em;
+  }
+
+  /* Align checkboxes horizontally */
+  fieldset label {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 10px;
+      font-weight: normal;
+  }
+
+  /* Style for the submit button */
+  .filter-form button[type="submit"] {
+      grid-column: span 2;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+  }
+
+  .filter-form button[type="submit"]:hover {
+      background-color: #0056b3;
+  }
+

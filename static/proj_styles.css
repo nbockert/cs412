@@ -1,0 +1,705 @@
+
+
+body{
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #E2F1E7;
+
+}
+h1{
+    text-align: center;
+    color:#16423C;
+    
+}
+.logo{
+  color: #E9EFEC;
+}
+/* From Uiverse.io by vinodjangid07 */ 
+.button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #16423C;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px #0b201d;
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.svgIcon {
+  width: 12px;
+  transition-duration: .3s;
+}
+
+.svgIcon path {
+  fill: #E9EFEC;
+}
+
+.button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color:#6A9C89;
+  align-items: center;
+}
+
+.button:hover .svgIcon {
+  width: 50px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+}
+
+.button::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+}
+.header{
+    margin-left: 100px;
+
+}
+#account_tab{
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse; /* Optional: makes the table cleaner */
+    width: 80%; /* Optional: adjust table width as needed */
+}
+/* Style for the navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #16423C;
+    color: #E2F1E7;
+}
+
+/* Left section for Wander */
+.navbar-left {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Center section for logged in user */
+.navbar-center {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Right section for navigation links */
+.navbar-right ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-right li {
+    margin-left: 20px;
+}
+
+.navbar-right a {
+    color: #E9EFEC;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 15px;
+    /* border-radius: 5px; */
+}
+
+.navbar-right a:hover {
+    background-color: #6A9C89;
+}
+
+/* Style for the logout button */
+/* .button-29 {
+    background-color: #243642;
+    border: none;
+    color: #E2F1E7;
+    padding: 1px 15px;
+    cursor: pointer;
+    font-family: "Raleway", sans-serif;
+    font-size: 15px;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.button-29:hover {
+    background-color: #274355;
+} */
+
+.images {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: auto;
+}
+.icon-text {
+    display: flex;
+    align-items: center;  /* Align icon and text vertically */
+    margin-bottom: 10px;  /* Space between city and email */
+}
+
+.icon {
+    width: 30px;   /* Adjust the icon size */
+    height: auto;
+    margin-right: 8px;  /* Space between the icon and the text */
+}
+.account-img {
+    display: inline-flex;
+    width: 300px; /* Adjust size as needed */
+    height: 300px; /* Same as width for a perfect circle */
+    border-radius: 50%; /* Makes the image a circle */ 
+    object-fit: cover; /* Ensures the image covers the entire area without stretching */
+    margin-left:200px;
+    align-items: left;
+    justify-content: left;
+}
+.profile-img {
+    display: inline-flex;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Same as width for a perfect circle */
+    border-radius: 50%; /* Makes the image a circle */
+    margin-right: 10px; /* Space between the image and the name */
+    object-fit: cover; /* Ensures the image covers the entire area without stretching */
+    align-items: left;
+    
+}
+.account_facts {
+    display: inline-flex;
+    margin-top:50px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    color: #16423C;
+
+}
+.account-info{
+    margin-top: 50px;
+    margin-left: 30px;
+
+}
+.profile_container {
+    width: 150px;
+    height: auto;
+    overflow: hidden;
+    border: 4px solid #16423C;
+    background-color: #6A9C89;
+    border-radius: 8px;
+    
+}
+
+.profile_image {
+    width: 100%; /* Make the image take the full width of the container */
+    height: 150px; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image covers the container */
+}
+
+.friends{
+    display: flex;
+    align-items: center; /* Align items (image and info) vertically */
+    justify-content: center; /* Center the whole container on the page */
+}
+
+#trip {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.trip-box {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #6A9C89;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #E9EFEC;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.trip-name {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.trip-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.trip-text {
+    margin-left: 100px;
+    flex: 2;
+    text-align: left;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.trip-images {
+    margin-left: 200px;
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.trip-img {
+    align-self: flex-end;
+    width: 400px;
+    height: 400px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.timestamp {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 0.9em;
+    color: #F5F7F8;
+}
+
+.sect_text{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.create-trip-btn {
+    display: flex;
+    /* flex-direction: row; */
+    /* align-self: flex-start; */
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Small width for the circle */
+    height: 40px; /* Small height for the circle */
+    background-color: #6A9C89; /* Green background */
+    color: white; /* White plus sign */
+    border-radius: 50%; /* Makes it circular */
+    text-decoration: none; /* Removes underline from the link */
+    font-size: 40px; /* Size of the plus sign */
+    font-weight: bold; /* Bold plus sign */
+    text-align: center;
+    line-height: 40px; /* Vertically centers the plus sign */
+    box-shadow: 0 2px 4px #16423C; /* Adds a slight shadow for effect */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+
+}
+
+.create-trip-btn:hover {
+    background-color: #C4DAD2; /* Darker green on hover */
+}
+/* From Uiverse.io by vinodjangid07 */ 
+.Btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px #16423C;
+    background-color: #6A9C89;
+  }
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 20px;
+  }
+  
+  .sign svg path {
+    fill: white;
+  }
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+  }
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px ,2px);
+  }
+  .sect_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  #lead_tab {
+    width: 60%; /* Set width to 60% of the parent container */
+    margin: 0 auto; /* Center the table horizontally */
+    border-collapse: collapse; /* Collapse table borders */
+    text-align: center; /* Center text within the table */
+    font-family: 'Raleway', sans-serif; /* Choose a font */
+}
+
+#lead_tab th, #lead_tab td {
+    padding: 10px 20px; /* Add padding to table cells */
+    border: 1px solid #ddd; /* Add border to cells */
+}
+
+#lead_tab th {
+    background-color: #6A9C89; /* Dark green for headers */
+    color: white; /* White text for headers */
+    font-weight: bold; /* Bold font for headers */
+}
+
+#lead_tab tr:nth-child(even) {
+    background-color: #C4DAD2; /* Light gray for even rows */
+}
+
+#lead_tab tr:hover {
+    background-color: #E9EFEC; /* Highlight row on hover */
+}
+
+#lead_tab td {
+    font-size: 18px; /* Slightly larger font for better readability */
+}
+
+
+.myscore{
+    font-size: 18px;
+    text-align: center; /* Center the paragraph text */
+    color: #6A9C89; /* Subtle color for the rank and score text */
+}
+#name{
+    display:flex;
+}
+#name_tag{
+    margin-right: 10px;
+}
+#add{
+    margin-top:20px;
+
+}
+.trip-post { max-width: 800px; margin: auto; padding: 20px; }
+.trip-images img { width: 100%; margin-bottom: 10px; }
+.poster-info { display: flex; align-items: center; margin-top: 10px; }
+.poster-name { margin-left: 10px; font-weight: bold; }
+.trip-message { margin-top: 20px; }
+.comment { margin-top: 10px; padding: 10px; background-color: #16423C; border-radius: 5px; display: flex; flex-direction: column; align-items: center;justify-content: center;}
+.add-comment { margin-top: 20px; }
+
+
+  .nocomments{
+    text-align: center;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  .links{
+    display: inline-flex;
+    justify-content: flex-end;
+    text-align: left;
+    gap: 10px;
+  }
+  /* From Uiverse.io by vinodjangid07 */ 
+.chatBtn {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background-color: #E9EFEC;
+    background-image: linear-gradient(147deg, #16423C, #A1D6B2,#557C56);
+    cursor: pointer;
+    padding-top: 3px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.164);
+    position: relative;
+    background-size: 300%;
+    background-position: left;
+    transition-duration: 1s;
+  }
+  
+  .tooltip {
+    position: absolute;
+    top: -40px;
+    opacity: 0;
+    background-color: #8EACCD;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .5s;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+  }
+  
+  .chatBtn:hover .tooltip {
+    opacity: 1;
+    transition-duration: .5s;
+  }
+  
+  .chatBtn:hover {
+    background-position: right;
+    transition-duration: 1s;
+  }
+  .makecomments {
+    display: flex;
+    margin-top: 10px; /* Optional spacing above the make comments link */
+    text-align: center; /* Align the content to the left */
+    align-items: center;
+    justify-content: center;
+    margin-left:500px;
+
+}
+/* From Uiverse.io by KSAplay */ 
+.link_btn {
+    padding: 0.5em 2em 0.5em 2.5em;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 15px;
+    color: #16423C;
+    letter-spacing: 0.3em;
+    text-shadow: -2px 2px 5px #6A9C89;
+    background-color: transparent;
+    border: 2px solid #C7FFD8;
+    box-shadow:
+      0 0 0px 1px #557C56,
+      0 0 10px 2px #6A9C89,
+      inset 0 0 0px 1px #557C56,
+      inset 0 0 10px 2px #6A9C89;
+    transition: 100ms;
+    cursor: pointer;
+  }
+  
+  .link_btn:hover {
+    box-shadow:
+      0 0 0px 1px #557C56,
+      0 0 10px 2px #6A9C89,
+      inset 0 0 0px 1px #557C56,
+      inset 0 0 30px 2px #6A9C89;
+    text-shadow: 0 0 10px #6A9C89;
+    transform: translateY(-5px);
+  }
+  
+  .link_btn:active {
+    box-shadow:
+      0 0 0px 1px #557C56,
+      0 0 25px 2px #6A9C89,
+      inset 0 0 0px 1px #557C56,
+      inset 0 0 30px 2px #6A9C89;
+    transform: translateY(1px);
+  }
+  .nav_links {
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    align-items: flex-end; /* Align links to the left */
+    gap: 20px; /* Add spacing between the links */
+    justify-content: left;
+    align-items: left;
+    margin-left: 300px;
+}
+
+.graph-container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.graph-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+#chart-container {
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  height: auto;
+}
+
+.plotly-graph-div {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.link_button {
+  text-decoration: none;
+  color: #16423C;
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 15px 30px;
+  display: block;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.link_button span {
+  background: linear-gradient(-45deg, #C4DAD2 0%, #6A9C89 100% );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.link_button:hover span {
+  -webkit-text-fill-color: white;
+}
+
+.link_button::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(2);
+  border: 3px solid;
+  border-image: linear-gradient(-45deg, #C4DAD2  0%, #6A9C89 100% );
+  border-image-slice: 1;
+  border-width: 2px 0 2px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: -1;
+}
+
+.link_button:hover::before {
+  transform: scaleY(0);
+  opacity: 1;
+}
+
+.link_button::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #C4DAD2 0%, #6A9C89 100% );
+  transform: scale(0);
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: -1;
+}
+
+.link_button:hover::after {
+  transform: scaleY(1);
+}
+
+.link_button:active {
+  scale: 0.90;
+}
+
+.center{
+  text-align: center;
+}
+.trip-link {
+  text-align:center;
+  display: inline-block;
+  text-decoration: none;
+  color: #16423C;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #6A9C89;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.trip-link:hover {
+  background-color: #a6dcc7;
+  transform: scale(1.05);
+  color: #0056b3;
+}
