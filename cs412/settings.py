@@ -34,17 +34,20 @@ ALLOWED_HOSTS = ['*']
 
 # GEOAPIFY_API_KEY = env('GEOAPIFY_API_KEY')
 # MAPTILER_API_KEY = env('MAPTILER_API_KEY')
-import environ
+# import environ
 import os
+GEOAPIFY_API_KEY = os.getenv('GEOAPIFY_API_KEY')
+MAPTILER_API_KEY = os.getenv('MAPTILER_API_KEY')
+# # Initialize environment variables
+# env = environ.Env(
+#     DEBUG=(bool, False)  # Specify default types and values
+# )
 
-# Initialize environment variables
-env = environ.Env(
-    DEBUG=(bool, False)  # Specify default types and values
-)
+# # Load .env file only in development
+# if os.environ.get("ENVIRONMENT", "development") == "development":
+#     environ.Env.read_env()
 
-# Load .env file only in development
-if os.environ.get("ENVIRONMENT", "development") == "development":
-    environ.Env.read_env()
+
 
 
 print("GEOAPIFY_API_KEY:", os.getenv("GEOAPIFY_API_KEY"))
