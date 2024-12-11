@@ -35,8 +35,8 @@ urlpatterns = [
     # path('marathon_analytics/', include('marathon_analytics.urls')),
     # path("", include("personalwebsite.urls")),
     # path(r'personalwebsite/', include('personalwebsite.urls')),
-    path("", include("voter_analytics.urls")),
-    path(r'voter_analytics/', include('voter_analytics.urls')),
+    # path("", include("voter_analytics.urls")),
+    # path(r'voter_analytics/', include('voter_analytics.urls')),
     path("", include("project.urls")),
     path(r'project/', include('project.urls')),
 

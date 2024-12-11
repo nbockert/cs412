@@ -26,16 +26,27 @@ SECRET_KEY = 'django-insecure-=k&9+a_gumf%bafm#q%i%f)@#_2ru$iaim09hl74&1b=gx$4w(
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-import environ
+# import environ
 
 # Initialize environment variables
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
-GEOAPIFY_API_KEY = env('GEOAPIFY_API_KEY')
-MAPTILER_API_KEY = env('MAPTILER_API_KEY')
-
+# GEOAPIFY_API_KEY = env('GEOAPIFY_API_KEY')
+# MAPTILER_API_KEY = env('MAPTILER_API_KEY')
+import environ
 import os
+
+# Initialize environment variables
+env = environ.Env(
+    DEBUG=(bool, False)  # Specify default types and values
+)
+
+# Load .env file only in development
+if os.environ.get("ENVIRONMENT", "development") == "development":
+    environ.Env.read_env()
+
+
 print("GEOAPIFY_API_KEY:", os.getenv("GEOAPIFY_API_KEY"))
 # Application definition
 
