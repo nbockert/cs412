@@ -14,6 +14,6 @@ Wander is a social media application that allows users to share trips they have 
 Check out the demo video here: [Wander Demo](https://youtu.be/yr0DhTlRlUE?si=Oc5fz1SW3IAc99rg)
 
 ## Created In
-- **Python >3.11**
+- **Python 3.11**
 - **Javascript**
 - **Django**
